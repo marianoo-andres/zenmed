@@ -16,6 +16,18 @@ module.exports = (grunt) => {
             cwd: 'src',
             src: '*.html',
             dest: 'dist/'
+          },
+          {
+            expand: true,
+            cwd: 'src/img',
+            src: '*',
+            dest: 'dist/img'
+          },
+          {
+            expand: true,
+            cwd: 'src/video',
+            src: '*',
+            dest: 'dist/video'
           }
         ]
       }
@@ -71,7 +83,7 @@ module.exports = (grunt) => {
         livereload: 9908
       },
       sass: {
-        files: ['src/sass/'],
+        files: ['src/sass/*'],
         tasks: ['sass:build']
       },
       js: {
