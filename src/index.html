@@ -9,8 +9,69 @@
    <link rel="stylesheet" href="css/style.min.css">
   <title>Zenmed</title>
 </head>
-<body>
-  <h1 class="title1">Template app</h1>
+<body class="hidden">
+  
+  <!-- VIDEO BG WRAP -->
+  <div class="video-bg-wrap">
+    <!-- OVERLAY -->
+    <div class="overlay"></div>
+
+    <!-- VIDEO BG -->
+    <video class="video-bg" autoplay loop muted>
+      <source src="video/bstream.mp4" type="video/mp4">
+      <source src="video/bstream.mp4" type="video/webm">
+      <source src="video/bstream.mp4" type="video/ogg">
+    </video>
+
+    <!-- FORM BOX -->
+    <div class="form-box">
+      <!-- FORM BOX HEADER -->
+      <div class="form-box-header">
+        <!-- LOGO WRAP -->
+        <div class="logo-wrap">        
+          <!-- LOGO IMG -->
+          <img class="logo-img" src="img/logo.png" alt="logo">
+          <h3 class="logo-text">Zenmed</h3>
+        </div>
+        <!-- /LOGO WRAP -->
+      </div>
+      <!-- /FORM BOX HEADER -->
+  
+      <form id="zm-login-form" method="post"></form>
+  
+      <!-- FORM BOX BODY -->
+      <div class="form-box-body">
+        <!-- FORM ROW -->
+        <div class="form-row">
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <label for="zm_user">Usuario</label>
+            <input type="text" name="zm_user" form="zm-login-form" autofocus>
+          </div>
+          <!-- FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+  
+        <!-- FORM ROW -->
+        <div class="form-row">
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <label for="zm_user">Contraseña</label>
+            <input type="password" name="zm_pwd" form="zm-login-form">
+          </div>
+          <!-- FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+  
+        <!-- BUTTON -->
+        <button class="button red" form="zm-login-form">Ingresar</button>
+        <!-- /BUTTON -->
+      </div>
+      <!-- /FORM BOX BODY -->
+    </div>
+    <!-- /FORM BOX -->
+  </div>
+  <!-- /VIDEO BG WRAP -->
 
 <!-- app -->
 <script src="app.min.js"></script>

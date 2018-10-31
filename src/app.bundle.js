@@ -4,20 +4,20 @@
 require('./js/feature1');
 
 },{"./js/feature1":2}],2:[function(require,module,exports){
-'use strict';
+// 'use strict';
 
-var t1 = document.querySelector('.title1');
-t1.style.transition = 'color .4s ease-in';
-t1.style.textAlign = 'center';
-t1.style.marginTop = '40px';
+// const t1 = document.querySelector('.title1');
+// t1.style.transition = 'color .4s ease-in';
+// t1.style.textAlign = 'center';
+// t1.style.marginTop = '40px';
 
-var getRandomRGB = function getRandomRGB() {
-  return Math.round(Math.random() * Math.pow(16, 6)).toString(16);
-  ;
-};
+// const getRandomRGB = () => {
+//   return Math.round(Math.random() * Math.pow(16, 6)).toString(16);
+// ;}
 
-var iid = window.setInterval(function () {
-  t1.style.color = '#' + getRandomRGB();
-}, 500);
+// const iid = window.setInterval(() => {
+//   t1.style.color = `#${getRandomRGB()}`;
+// }, 500);
+"use strict";
 
 },{}]},{},[1]);

@@ -1,0 +1,21 @@
+@keyframes zoomin {
+  0% {
+    opacity: 0;
+    @include transform_scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    @include transform_scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    @include transform_rotate(0);
+  }
+
+  100% {
+    @include transform_rotate(360deg);
+  }
+}

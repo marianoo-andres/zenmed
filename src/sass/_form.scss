@@ -1,0 +1,62 @@
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid $color-line;
+  border-radius: 4px;
+  @extend %paragraph;
+}
+
+label {
+  display: block;
+  margin-bottom: 16px;
+  @extend %paragraph;
+  color: $black-light;
+  font-weight: $weight-bold;
+}
+
+.form-row {
+  @include flex;
+  margin-bottom: 22px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-row-item {
+    width: 100%;
+  }
+  
+  &.half {
+    justify-content: space-between;
+
+    .form-row-item {
+      width: 45%;
+    }
+  }
+}
+
+.form-box {
+  width: 480px;
+  padding: 0 40px 50px;
+  margin: 0 auto;
+  background-color: $white;
+}
+
+.form-box-header {
+  border-bottom: 1px solid $color-line;
+  padding: 40px 0;
+
+  .logo-img {
+    animation: spin 18s linear forwards infinite;
+  }
+}
+
+.form-box-body {
+  padding: 40px 0 0;
+
+  .button {
+    margin: 50px auto 0;
+  }
+}
