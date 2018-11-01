@@ -11,51 +11,70 @@ p, a {
   @extend %paragraph;
 }
 
+p {
+  line-height: 24px;
+}
+
+.grid-limit {
+  max-width: 1170px;
+  width: 95%;
+  margin: 0 auto;
+}
+
 .logo-wrap {
   @include flex;
-  justify-content: center;
-  height: 51px;
+  pointer-events: none;
 
   .logo-img {
-    margin-right: 12px;
+    margin-right: 10px;
   }
 
   .logo-text {
-    line-height: 51px;
-    pointer-events: none;
+    margin-top: 6px;
   }
+}
+
+.logo-text,
+.logo-legend {
+  color: $white;
+  letter-spacing: .02em;
 }
 
 .logo-text {
-  font-family: $font-tertiary;
-  font-size: 40px;
-  font-weight: $weight-light;
-  text-transform: none;
-  letter-spacing: .08em;
+  font-size: $fs-20;
 }
 
-.overlay {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .4);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
+.logo-legend {
+  font-size: $fs-9;
+  margin-top: 2px;
 }
 
-.video-bg-wrap {
-  padding-top: 200px;
+.logo-img {
+  width: 44px;
+  height: 35px;
+}
 
-  .video-bg {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -2;
+.promo-wrap {
+  width: 544px;
+  padding-top: 120px;
+
+  .promo-info {
+    margin-top: 30px;
+  }
+
+  .button {
+    margin-top: 60px;
   }
 }
 
-.hidden {
-  overflow-y: hidden;
+.promo-title {
+  color: $white;
+  font-size: $fs-40;
+  font-weight: $weight-light;
+  line-height: 48px;
+}
+
+.promo-info {
+  color: $white;
+  font-size: $fs-14;
 }

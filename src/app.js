@@ -1,1 +1,1 @@
-require('./js/feature1');
+require('./js/fit-to-screen');

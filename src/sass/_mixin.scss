@@ -23,3 +23,10 @@
   -moz-transform: rotate($deg);
   -ms-transform: rotate($deg);
 }
+
+@mixin background_size($val) {
+  background-size: $val;
+  -webkit-background-size: $val;
+  -moz-background-size: $val;
+  -o-background-size: $val;
+}
