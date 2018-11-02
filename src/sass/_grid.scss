@@ -9,3 +9,9 @@
   grid-template-columns: 544px 400px;
   grid-gap: 30px;
 }
+
+@media screen and (max-width: 1260px) {
+  .grid-2col {
+    grid-template-columns: 100%;
+  }
+}

@@ -1,0 +1,60 @@
+.promo-wrap {
+  width: 544px;
+  padding-top: 120px;
+
+  .promo-info {
+    margin-top: 30px;
+  }
+
+  .button {
+    margin-top: 60px;
+  }
+}
+
+.promo-title {
+  color: $white;
+  font-size: $fs-40;
+  font-weight: $weight-light;
+  line-height: 48px;
+}
+
+.promo-info {
+  width: 450px;
+  color: $white;
+  font-size: $fs-14;
+}
+
+@media screen and (max-width: 1260px) {
+  .promo-wrap {
+    width: 100%;
+
+    .promo-title,
+    .promo-info {
+      text-align: center;
+    }
+
+    .promo-info {
+      width: 100%;
+    }
+
+    .button {
+      margin: 30px auto 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .promo-wrap {
+    .promo-title {
+      font-size: $fs-30;
+    }
+
+    .promo-info {
+      display: none;
+    }
+
+    .button {
+      display: none;
+    }
+  }
+}

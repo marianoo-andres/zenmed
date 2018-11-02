@@ -26,5 +26,9 @@
   &.cyan {
     background-color: $cyan;
     border: none;
+
+    &:hover {
+      background-color: $cyan-light;
+    }
   }
 }

@@ -18,3 +18,22 @@
     animation: slide-in-bottom 1s ease-out forwards;
   }
 }
+
+@media screen and (max-width: 1260px) {
+  .section-wrap {
+    &.bg-1 {
+      & > {
+        .section {
+          padding-top: 30px;
+        }
+      }
+    }
+  }
+
+  .section {
+    .popup-wrap {
+      margin: 0 auto;
+      animation: none;
+    }
+  }
+}
