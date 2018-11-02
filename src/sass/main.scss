@@ -3,6 +3,7 @@
 @import 'animation';
 @import 'font';
 @import 'color';
+@import 'icon';
 @import 'button';
 @import 'grid';
 @import 'general';
@@ -11,3 +12,6 @@
 @import 'promo';
 @import 'header';
 @import 'section';
+@import 'vendor/font-awesome/fontawesome.scss';
+@import 'vendor/font-awesome/solid.scss';
+@import 'vendor/font-awesome/brands.scss';

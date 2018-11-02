@@ -10,8 +10,13 @@
     .popup-header-title {
       @extend %paragraph;
       color: $black-lighter;
+      font-size: 1em;
       font-weight: $weight-bold;
       line-height: 60px;
+
+      .icon-login {
+        margin-right: 5px;
+      }
     }
   }
 

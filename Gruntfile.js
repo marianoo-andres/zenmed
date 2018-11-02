@@ -20,14 +20,14 @@ module.exports = (grunt) => {
           {
             expand: true,
             cwd: 'src/img',
-            src: '*',
+            src: '**',
             dest: 'dist/img'
           },
           {
             expand: true,
-            cwd: 'src/video',
-            src: '*',
-            dest: 'dist/video'
+            cwd: 'src/font',
+            src: '**',
+            dest: 'dist/font'
           }
         ]
       }
@@ -83,11 +83,11 @@ module.exports = (grunt) => {
         livereload: 9908
       },
       sass: {
-        files: ['src/sass/*'],
+        files: ['src/sass/**'],
         tasks: ['sass:build']
       },
       js: {
-        files: ['src/app.js', 'src/js/**/*.js'],
+        files: ['src/app.js', 'src/js/**'],
         tasks: ['browserify:build', 'uglify:build']
       },
       html: {

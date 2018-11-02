@@ -12,4 +12,10 @@ focusable.forEach( (el) => {
     if (input.value === '')
       el.classList.remove('focused');
   });
+
+ if (el.classList.contains('autofocus')) {
+  const tid = window.setTimeout(() => {
+    input.focus();
+  }, 1600);
+ }
 });

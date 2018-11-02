@@ -15,7 +15,32 @@
   padding: 80px 0 60px;
 
   .popup-wrap {
-    animation: slide-in-bottom 1s ease-out forwards;
+    margin-top: 60px;
+    // animation: slide-in-bottom 1s ease-out forwards;
+    // animation-delay: .8s;
+  }
+
+  .promo-wrap {
+    .promo-title,
+    .promo-info,
+    .button {
+      @include transform_translate(-500px, 0);
+      opacity: 0;
+    }
+
+    .promo-title {
+      animation: slide-in-left .6s ease-out forwards;
+    }
+
+    .promo-info {
+      animation: slide-in-left .6s ease-out forwards;
+      animation-delay: .3s;
+    }
+
+    .button {
+      animation: pop-in .8s ease-in-out forwards;
+      animation-delay: .6s;
+    }
   }
 }
 
@@ -33,7 +58,17 @@
   .section {
     .popup-wrap {
       margin: 0 auto;
-      animation: none;
+      // animation: none;
+    }
+
+    .promo-wrap {
+      .promo-title,
+      .promo-info,
+      .button {
+        @include transform_translate(0, 0);
+        opacity: 1;
+        animation: none;
+      }
     }
   }
 }

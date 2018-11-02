@@ -27,6 +27,12 @@ focusable.forEach(function (el) {
   input.addEventListener('blur', function () {
     if (input.value === '') el.classList.remove('focused');
   });
+
+  if (el.classList.contains('autofocus')) {
+    var tid = window.setTimeout(function () {
+      input.focus();
+    }, 1600);
+  }
 });
 
 },{}]},{},[1]);

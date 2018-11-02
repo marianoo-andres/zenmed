@@ -41,3 +41,15 @@
   -moz-background-size: $val;
   -o-background-size: $val;
 }
+
+@mixin selection($text-color, $bg-color) {
+  ::selection {
+    color: $text-color;
+    background-color: $bg-color;
+  }
+
+  ::-moz-selection {
+    color: $text-color;
+    background-color: $bg-color;
+  }
+}
