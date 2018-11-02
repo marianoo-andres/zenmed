@@ -11,6 +11,114 @@
 </head>
 <body>
 
+  <!-- POPUP WRAP -->
+  <div id="register-popup" class="popup-wrap medium">
+    <!-- CLOSE BUTTON -->
+    <i id="register-popup-close" class="popup-close icon-close fas fa-times"></i>
+    <!-- /CLOSE BUTTON -->
+
+    <!-- POPUP HEADER -->
+    <div class="popup-header">
+      <p class="popup-header-title"><i class="icon-user fas fa-user-circle"></i> Registrarse en el sistema</p>
+    </div>
+    <!-- /POPUP HEADER -->
+
+    <!-- POPUP BODY -->
+    <div class="popup-body">
+      <!-- LOGIN FORM -->
+      <form id="register-form" method="post">
+        <!-- FORM ROW -->
+        <div class="form-row half">
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="text" name="zm_reg_nombre" placeholder="Ingresa tu nombre...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="text" name="zm_reg_apellido" placeholder="Ingresa tu apellido...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="text" name="zm_reg_dni" placeholder="Ingresa tu DNI...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="text" name="zm_reg_email" placeholder="Ingresa tu email...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row half">  
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="text" name="zm_reg_direccion" placeholder="Ingresa tu direccion...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="text" name="zm_reg_telefono" placeholder="Ingresa tu telefono...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">  
+           <!-- FORM ROW ITEM -->
+           <div class="form-row-item">
+            <input type="text" name="zm_reg_user" placeholder="Ingresa tu usuario...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">  
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="password" name="zm_reg_pwd" placeholder="Ingresa tu contraseña...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">  
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="password" name="zm_reg_pwd2" placeholder="Ingresa nuevamente tu contraseña...">
+          </div>
+          <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- BUTTON -->
+        <button class="button full cyan">Registrarme</button>
+        <!-- /BUTTON -->
+      </form>
+      <!-- /LOGIN FORM -->
+    </div>
+    <!-- /POPUP BODY -->
+  </div>
+  <!-- /POPUP WRAP -->
+
   <!-- HEADER WRAP -->
   <div class="header-wrap">
     <!-- HEADER -->
@@ -36,12 +144,13 @@
   <div class="section-wrap bg-1 fit-to-screen">
     <!-- SECTION -->
     <div class="section grid-limit">
+      <!-- GRID 2COL -->
       <div class="grid-2col">
         <!-- PROMO WRAP -->
         <div class="promo-wrap">
           <p class="promo-title">Bienvenido al sistema de turnos del consultorio</p>
           <p class="promo-info">Una vez registrado en nuestro sistema, usted podra administrar sus turnos y consultar la cartilla medica completa desde el mismo.</p>
-          <a href="#" class="button">Registrarme ahora!</a>
+          <a href="#" id="register-popup-open1" class="button">Registrarme ahora!</a>
         </div>
         <!-- /PROMO WRAP -->
 
@@ -55,7 +164,8 @@
 
           <!-- POPUP BODY -->
           <div class="popup-body">
-            <form method="post">
+            <!-- LOGIN FORM -->
+            <form id="login-form" method="post">
               <!-- FORM ROW -->
               <div class="form-row">
                 <!-- FORM ROW ITEM -->
@@ -67,7 +177,11 @@
                   <!-- /INPUT WRAP -->
                 </div>
                 <!-- /FORM ROW ITEM -->
+              </div>
+              <!-- /FORM ROW -->
 
+              <!-- FORM ROW -->
+              <div class="form-row">
                 <!-- FORM ROW ITEM -->
                 <div class="form-row-item">
                   <!-- INPUT WRAP -->
@@ -84,14 +198,16 @@
               <button class="button full cyan">Ingresar</button>
               <!-- /BUTTON -->
             </form>
+            <!-- /LOGIN FORM -->
 
             <!-- POPUP TEXT -->
-            <p class="popup-text">No tenes una cuenta? <a class="link-text" href="#">Registrate ahora!</a> es realmente simple, en minutos podes empezar a disfrutar de los beneficios que te brinda nuestro sistema!</p>
+            <p class="popup-text">No tenes una cuenta? <a id="register-popup-open2" class="link-text" href="#">Registrate ahora!</a> es realmente simple, en minutos podes empezar a disfrutar de los beneficios que te brinda nuestro sistema!</p>
           </div>
           <!-- /POPUP BODY -->
         </div>
         <!-- /POPUP WRAP -->
       </div>
+      <!-- /GRID 2COL -->
     </div>
     <!-- /SECTION -->
   </div>

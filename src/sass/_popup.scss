@@ -2,6 +2,26 @@
   width: 400px;
   border: 1px solid $color-line;
   background-color: $white;
+  position: relative;
+
+  &.medium {
+    width: 500px;
+
+    .popup-header {
+      padding: 0 36px;
+    }
+
+    .popup-body {
+      padding: 36px;
+    }
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+  }
 
   .popup-header {
     padding: 0 26px;
@@ -16,6 +36,11 @@
 
       .icon-login {
         margin-right: 5px;
+      }
+
+      .icon-user {
+        margin-right: 5px;
+        font-size: $fs-20;
       }
     }
   }
