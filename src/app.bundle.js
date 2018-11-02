@@ -2,14 +2,31 @@
 'use strict';
 
 require('./js/fit-to-screen');
+require('./js/focus-inputs');
 
-},{"./js/fit-to-screen":2}],2:[function(require,module,exports){
+},{"./js/fit-to-screen":2,"./js/focus-inputs":3}],2:[function(require,module,exports){
 'use strict';
 
 var fitTargets = document.querySelectorAll('.fit-to-screen');
 
 fitTargets.forEach(function (el) {
   el.style.minHeight = window.outerHeight + 'px';
+});
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+var focusable = document.querySelectorAll('.input-wrap');
+
+focusable.forEach(function (el) {
+  var input = el.querySelector('input');
+  input.addEventListener('focus', function () {
+    el.classList.add('focused');
+  });
+
+  input.addEventListener('blur', function () {
+    if (input.value === '') el.classList.remove('focused');
+  });
 });
 
 },{}]},{},[1]);

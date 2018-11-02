@@ -19,3 +19,44 @@
     @include transform_rotate(360deg);
   }
 }
+
+@keyframes pop-in {
+  0% {
+    @include transform_scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    @include transform_scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    @include transform_translate(200px, 0);
+    opacity: 0;
+  }
+
+  100% {
+    @include transform_translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    @include transform_translate(0, 40px);
+    opacity: 0;
+  }
+
+  10% {
+    @include transform_translate(0, 40px);
+    opacity: 0;
+  }
+
+  100% {
+    @include transform_translate(0, 0);
+    opacity: 1;
+  }
+}

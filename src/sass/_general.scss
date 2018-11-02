@@ -15,12 +15,6 @@ p {
   line-height: 24px;
 }
 
-.grid-limit {
-  max-width: 1170px;
-  width: 95%;
-  margin: 0 auto;
-}
-
 .logo-wrap {
   @include flex;
   pointer-events: none;
@@ -75,6 +69,12 @@ p {
 }
 
 .promo-info {
+  width: 450px;
   color: $white;
   font-size: $fs-14;
+}
+
+.link-text {
+  color: $orange;
+  font-weight: $weight-medium;
 }

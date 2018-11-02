@@ -1,0 +1,11 @@
+.grid-limit {
+  max-width: 1170px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.grid-2col {
+  @include grid;
+  grid-template-columns: 544px 400px;
+  grid-gap: 30px;
+}

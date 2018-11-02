@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 $font-primary: 'Ubuntu', sans-serif;
 $font-secondary: 'Roboto', sans-serif;
 
 $weight-bold: 700;
+$weight-medium: 500;
 $weight-regular: 400;
 $weight-light: 300;
 
-$fs-9: 9px / 16px * 1em;
-$fs-14: 14px / 16px * 1em;
-$fs-20: 20px / 16px * 1em;
-$fs-40: 40px / 16px * 1em;
+$fs-9: 9px / 16px * 1rem;
+$fs-10: 10px / 16px * 1rem;
+$fs-13: 13px / 16px * 1rem;
+$fs-14: 14px / 16px * 1rem;
+$fs-20: 20px / 16px * 1rem;
+$fs-40: 40px / 16px * 1rem;
 
 %heading {
   font-family: $font-primary;
