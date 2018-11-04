@@ -3,6 +3,10 @@
   flex-flow: row wrap;
 }
 
+@mixin grid {
+  display: grid;
+}
+
 @mixin transition($duration, $who: all, $ease: ease-in-out) {
   transition: $who $duration $ease;
   -webkit-transition: $who $duration $ease;
@@ -22,4 +26,30 @@
   -webkit-transform: rotate($deg);
   -moz-transform: rotate($deg);
   -ms-transform: rotate($deg);
+}
+
+@mixin transform_translate($x, $y) {
+  transform: translate($x, $y);
+  -webkit-transform: translate($x, $y);
+  -moz-transform: translate($x, $y);
+  -ms-transform: translate($x, $y);
+}
+
+@mixin background_size($val) {
+  background-size: $val;
+  -webkit-background-size: $val;
+  -moz-background-size: $val;
+  -o-background-size: $val;
+}
+
+@mixin selection($text-color, $bg-color) {
+  ::selection {
+    color: $text-color;
+    background-color: $bg-color;
+  }
+
+  ::-moz-selection {
+    color: $text-color;
+    background-color: $bg-color;
+  }
 }

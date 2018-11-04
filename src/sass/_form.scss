@@ -2,10 +2,11 @@ input[type="text"],
 input[type="password"],
 textarea {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid $color-line;
-  border-radius: 4px;
+  padding: 14px 20px;
+  border: 1px solid $color-line-dark;
+  border-radius: 2px;
   @extend %paragraph;
+  color: $black-lighter;
 }
 
 label {
@@ -16,14 +17,62 @@ label {
   font-weight: $weight-bold;
 }
 
-.form-row {
-  @include flex;
-  margin-bottom: 22px;
+.input-wrap {
+  width: 100%;
+  position: relative;
 
-  &:last-child {
-    margin-bottom: 0;
+  &:before {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    @extend %paragraph;
+    color: $black-lightest;
+    font-size: $fs-14;
+    opacity: 1;
+    @include transition(.2s);
+    pointer-events: none;
   }
 
+  input[type="text"],
+  input[type="password"] {
+    padding: 24px 20px 10px;
+  }
+
+  &.focused {
+    &:before {
+      top: 8px;
+      font-size: $fs-10;
+      opacity: 0.6;
+    }
+  }
+
+  &.user-input {
+    &:before {
+      content: 'Tu usuario';
+    }
+  }
+
+  &.pwd-input {
+    &:before {
+      content: 'Tu password';
+    }
+  }
+}
+
+.form-row {
+  @include flex;
+  margin-top: 20px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  & + {
+    .button {
+      margin-top: 36px;
+    }
+  }
+  
   .form-row-item {
     width: 100%;
   }
@@ -32,31 +81,7 @@ label {
     justify-content: space-between;
 
     .form-row-item {
-      width: 45%;
+      width: 48%;
     }
-  }
-}
-
-.form-box {
-  width: 480px;
-  padding: 0 40px 50px;
-  margin: 0 auto;
-  background-color: $white;
-}
-
-.form-box-header {
-  border-bottom: 1px solid $color-line;
-  padding: 40px 0;
-
-  .logo-img {
-    animation: spin 18s linear forwards infinite;
-  }
-}
-
-.form-box-body {
-  padding: 40px 0 0;
-
-  .button {
-    margin: 50px auto 0;
   }
 }
