@@ -4,9 +4,10 @@
 @import 'font';
 @import 'color';
 @import 'icon';
-@import 'vendor/font-awesome/fontawesome.scss';
-@import 'vendor/font-awesome/solid.scss';
-@import 'vendor/font-awesome/brands.scss';
+@import 'vendor/font-awesome/fontawesome';
+@import 'vendor/font-awesome/solid';
+@import 'vendor/font-awesome/brands';
+@import 'vendor/font-awesome/regular';
 @import 'button';
 @import 'grid';
 @import 'form';
@@ -15,4 +16,5 @@
 @import 'header';
 @import 'section';
 @import 'promo';
+@import 'navigation';
 @import 'dashboard';

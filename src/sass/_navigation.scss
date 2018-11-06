@@ -1,0 +1,36 @@
+.dashboard-navigation {
+  width: 70px;
+  height: 100%;
+  background-color: $white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.navigation {
+  padding-top: 20px;
+}
+
+.navigation-item {
+  .navigation-item-link {
+    display: block;
+    height: 60px;
+  }
+
+  .icon {
+    margin-top: 20px;
+    color: $violet-lighter;
+    @include transition(.15s, color);
+
+    &.icon-cog {
+      margin-left: 22px;
+    }
+  }
+
+  &:hover,
+  &.selected {
+    .icon {
+      color: $orange;
+    }
+  }
+}

@@ -28,6 +28,21 @@ p {
   .logo-text {
     margin-top: 6px;
   }
+
+  &.big {
+    width: 70px;
+    height: 70px;
+
+    .logo-img {
+      width: 37px;
+      height: 29px;
+      margin: 20px 0 0 16px;
+    }
+  }
+
+  &.orange {
+    background: $orange;
+  }
 }
 
 .logo-text,
