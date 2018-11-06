@@ -1,0 +1,89 @@
+.dashboard-header-wrap {
+  background-color: $color-dashboard-header-bg;
+}
+
+.dashboard-header {
+  min-height: 70px;
+  max-width: 1370px;
+  padding: 0 70px;
+  margin: 0 auto;
+  @include flex;
+  justify-content: space-between;
+
+  .dashboard-widget {
+    @include flex;
+
+    .dashboard-current-page {
+      margin-right: 104px;
+    }
+  }
+
+  .dashboard-current-page {
+    @extend %paragraph;
+    color: $white;
+    font-size: $fs-14;
+    font-weight: $weight-bold;
+    line-height: 70px;
+    text-transform: uppercase;
+  }
+}
+
+.dashboard-body-wrap {
+  background-color: $color-dashboard-body-bg;
+}
+
+.dashboard-body {
+  max-width: 1370px;
+  padding: 40px 70px 60px;
+  margin: 0 auto;
+}
+
+.user-actions-wrap {
+  padding-top: 18px;
+  cursor: pointer;
+}
+
+.user-widget {
+  padding: 6px 0 0 42px;
+  position: relative;
+
+  .connection-dot {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    z-index: 2;
+  }
+
+  .avatar-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .user-name,
+  .user-info {
+    @extend %paragraph;
+    font-weight: $weight-bold;
+    line-height: 1em;
+  }
+
+  .user-name {
+    color: $white;
+    font-size: $fs-12;
+  }
+
+  .user-info {
+    margin-top: 2px;
+    color: $violet-lighter;
+    font-size: $fs-8;
+    text-transform: uppercase;
+  }
+}
+
+.user-actions {
+
+}
+
+.user-action {
+
+}
