@@ -6,13 +6,13 @@ if (tooltips.length > 0) {
   const showTooltip = function (el) {
     el.style.visibility = 'visible';
     el.style.transform = 'scale(1)';
-    el.style.left = `86px`;
+    el.style.opacity = '1';
   };
 
   const hideTooltip = function (el) {
-    el.style.left = `0px`;
     el.style.visibility = 'hidden';
     el.style.transform = 'scale(0)';
+    el.style.opacity = '0';
   };
 
   tooltips.forEach( (el) => {
@@ -23,10 +23,11 @@ if (tooltips.length > 0) {
           arrowLeft = document.createElement('div');
     tooltipWrap.style.visibility = 'hidden';
     tooltipWrap.style.transform = 'scale(0)';
+    tooltipWrap.style.opacity = '0';
     tooltipWrap.style.transition = 'all .3s ease-in-out';
     tooltipWrap.style.position = 'absolute';
     tooltipWrap.style.top = `16px`;
-    tooltipWrap.style.left = `0px`;
+    tooltipWrap.style.left = `86px`;
     tooltipWrap.style.borderRadius = '200px';
     tooltipWrap.style.backgroundColor = '#363636';
     tooltipWrap.style.pointerEvents = 'none';
