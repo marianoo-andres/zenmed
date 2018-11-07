@@ -1,6 +1,6 @@
-const XM_Popup = require('./vendor/xm-popup');
+const app = require('./app.core');
 
-new XM_Popup({
+app.createPopup({
   popupContainer: '#register-popup',
   openTriggers: [
     '#register-popup-open1',

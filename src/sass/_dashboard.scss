@@ -55,7 +55,7 @@
   padding-top: 18px;
   cursor: pointer;
   @include flex;
-
+  position: relative;
 
   .icon-arrow {
     margin: 10px 0 0 16px;
@@ -100,9 +100,39 @@
 }
 
 .user-actions {
+  width: 202px;
+  background-color: $violet;
+  position: absolute;
+  top: 40px;
+  visibility: hidden;
+  opacity: 0;
+  @include transition(.3s);
 
+  &.open {
+    top: 72px;
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .user-action {
+  height: 40px;
 
+  &:hover {
+    .user-action-link {
+      background-color: $violet-light;
+      padding-left: 25px;
+    }
+  }
+
+  .user-action-link {
+    display: block;
+    padding-left: 20px;
+    @extend %paragraph;
+    color: $white;
+    font-size: $fs-12;
+    font-weight: $weight-bold;
+    line-height: 40px;
+    @include transition(.15s);
+  }
 }

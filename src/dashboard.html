@@ -72,7 +72,7 @@
           <!-- DASHBOARD WIDGET -->
           <div class="dashboard-widget">
             <!-- USER ACTIONS WRAP -->
-            <div class="user-actions-wrap user-actions-trigger">
+            <div class="user-actions-wrap">
               <!-- USER WIDGET -->
               <div class="user-widget">
                 <div class="connection-dot"></div>
@@ -89,13 +89,19 @@
               <!-- /ICON ARROW -->
 
               <!-- USER ACTIONS -->
-              <div class="user-actions dropdown">
+              <ul class="user-actions dropdown" data-triggers=".user-actions-wrap">
                 <!-- USER ACTION -->
-                <div class="user-action">
+                <li class="user-action">
+                  <a href="#" class="user-action-link">Configuracion</a>
+                </li>
+                <!-- USER ACTION -->
 
-                </div>
                 <!-- USER ACTION -->
-              </div>
+                <li class="user-action">
+                  <a href="#" class="user-action-link">Cerrar Sesion</a>
+                </li>
+                <!-- USER ACTION -->
+              </ul>
               <!-- /USER ACTIONS -->
             </div>
             <!-- /USER ACTIONS WRAP -->
