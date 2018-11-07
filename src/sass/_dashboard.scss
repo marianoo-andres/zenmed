@@ -1,23 +1,10 @@
-.dashboard-wrap {
-  background-color: $gray-lightest;
-}
-
-.dashboard {
-  max-width: 1370px;
-  margin: 0 auto;
-  width: 95%;
-  position: relative;
-}
-
 .dashboard-header-wrap {
   background-color: $color-dashboard-header-bg;
 }
 
 .dashboard-header {
   min-height: 70px;
-  max-width: 1370px;
   padding: 0 70px;
-  margin: 0 auto;
   @include flex;
   justify-content: space-between;
 
@@ -45,10 +32,10 @@
 }
 
 .dashboard-body {
-  max-width: 1370px;
-  padding: 40px 70px 60px;
+  max-width: 1170px;
+  width: 95%;
+  padding: 40px 0 60px 70px;
   margin: 0 auto;
-  height: 1000px;
 }
 
 .user-actions-wrap {
@@ -100,7 +87,7 @@
 }
 
 .user-actions {
-  width: 202px;
+  width: 180px;
   background-color: $violet;
   position: absolute;
   top: 40px;
