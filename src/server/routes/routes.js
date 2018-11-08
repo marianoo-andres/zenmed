@@ -12,6 +12,8 @@ module.exports = function(app) {
     .put(userList.update_a_user)
     .delete(userList.delete_a_user);
 
+  app.route('/users/login')
+    .post(userList.login)
 
   var doctorList = require('../controllers/doctors.controller');
 

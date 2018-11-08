@@ -30,6 +30,23 @@ exports.read_a_user = function(req, res) {
   });
 };
 
+exports.login = function(req, res) {
+  User.findOne( { username: req.body.username }, function(err, user) {
+    if (err)
+      res.send({ isLogged: false, err: err });
+    
+    if(user){
+      user.comparePassword(req.body.password, function(err, isMatch) {
+        if (err) throw err;
+        if(isMatch)
+          res.json({ isLogged: true, role: user.role });
+        else 
+          res.json({ isLogged: false });
+      });      
+    }
+  });
+};
+
 
 exports.update_a_user = function(req, res) {
   User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, function(err, user) {
