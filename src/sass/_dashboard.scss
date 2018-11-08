@@ -123,3 +123,26 @@
     @include transition(.15s);
   }
 }
+
+.content-widget {
+  border: 1px solid $color-line;
+  border-radius: 4px;
+  background-color: $white;
+
+  .content-widget-header {
+    height: 60px;
+    border-bottom: 1px solid $color-line;
+    padding: 26px 26px 0;
+
+    .content-widget-header-title {
+      @extend %paragraph;
+      color: $violet-light;
+      font-weight: $weight-bold;
+      line-height: 1em;
+    }
+  }
+
+  .content-widget-body {
+    padding: 22px 26px 30px;
+  }
+}
