@@ -58,12 +58,33 @@ exports.read_a_user = function(req, res) {
   User.findById(req.params.userId, function(err, user) {
     if (err)
       res.send(err);
-    res.json(user);
-  });
+    else{
+      if(user){
+        if (user.role == "Doctor"){
+          Doctor.findOne({ username: user.username }, function(err, doctor){
+            if (err)
+              res.send(err);
+            else{
+              res.json(doctor);
+            }            
+          })
+        }else if (user.role == "Patient"){
+            Patient.findOne({ username: user.username }, function(err, patient){
+              if (err)
+                res.send(err);
+              else{
+                res.json(patient);
+              }            
+            })
+        } else {
+          res.json(user);
+        }
+      }
+    }
+  })
 };
 
-exports.login = function(req, res) {
-  User.findOne( { username: req.body.username }, function(err, user) {
+exports.login = function(req, res) {  User.findOne( { username: req.body.username }, function(err, user) {
     if (err)
       res.send({ isLogged: false, err: err });
     
