@@ -4,6 +4,8 @@ module.exports = function(app) {
 
   app.route('/users')
     .get(userList.list_all_users)
+
+  app.route('/users/register')
     .post(userList.create_a_user);
 
 

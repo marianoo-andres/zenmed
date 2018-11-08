@@ -2,7 +2,11 @@
 
 
 var mongoose = require('mongoose'),
-  User = mongoose.model('Users');
+  User = mongoose.model('Users'),
+  Doctor = mongoose.model('Doctors'),
+  Patient = mongoose.model('Patients');
+
+const ERROR_DUPLICATE_DOCUMENT = 11000
 
 exports.list_all_users = function(req, res) {
   User.find({}, function(err, user) {
@@ -15,11 +19,39 @@ exports.list_all_users = function(req, res) {
 exports.create_a_user = function(req, res) {
   var new_user = new User(req.body);
   new_user.save(function(err, user) {
-    if (err)
-      res.send(err);
-    res.json(user);
+    if (!checkError(res, err, "Username")){
+      if(new_user.role == 'Doctor'){
+        var new_doctor = new Doctor(req.body)
+        new_doctor.save(function(err, doctor){
+          if (!checkError(res, err, "Doctor")){
+            res.json({ created: true });
+          }
+        })
+      } else if(new_user.role == 'Patient'){
+        var new_patient = new Patient(req.body)
+        new_patient.save(function(err, patient){
+          if (!checkError(res, err, "Patient")){
+            res.json({ created: true });
+          }
+        })
+      } else {
+        res.send({ created: false, error: 'Role is not valid' });
+      }
+    }
   });
 };
+
+function checkError(res, err, entityName){
+  if (err){
+    if(err.code == ERROR_DUPLICATE_DOCUMENT){
+      res.send({ created: false, error: `${entityName} already exists` });  
+    } else {
+      res.send({ created: false, error: err });  
+    }
+    return true
+  }
+  return false
+}
 
 
 exports.read_a_user = function(req, res) {

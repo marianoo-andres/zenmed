@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var DoctorSchema = new Schema({
+var PatientSchema = new Schema({
     username: { type: String, required: true, index: { unique: true } },
     name: {
         type: String,
@@ -22,16 +22,10 @@ var DoctorSchema = new Schema({
         type: String,
         required: true
     },
-    registrationNumber: {
-        type: String,
+    birthdate: {
+        type: Date,
         required: true
     },
-    specialities: [
-        {
-            type: String,
-            required: true
-        }
-    ],
     address: {
         street: {
             type: String
@@ -53,4 +47,4 @@ var DoctorSchema = new Schema({
     }
 });
   
-module.exports = mongoose.model('Doctors', DoctorSchema);
+module.exports = mongoose.model('Patients', PatientSchema);

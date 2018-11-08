@@ -7,6 +7,7 @@ var express = require('express'),
   //add models 
   Task = require('./server/models/user'),
   Task = require('./server/models/doctor'),
+  Task = require('./server/models/patient'),
   Task = require('./server/models/specialities'),
 
   bodyParser = require('body-parser');
