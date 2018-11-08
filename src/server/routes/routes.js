@@ -1,5 +1,10 @@
 'use strict';
 module.exports = function(app) {
+  var datesList = require('../controllers/dates.controller');
+  app.route('/dates/available')
+   .get(datesList.list_available_dates)
+
+
   var userList = require('../controllers/users.controller');
 
   app.route('/users')

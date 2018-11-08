@@ -9,6 +9,8 @@ var express = require('express'),
   Task = require('./server/models/doctor'),
   Task = require('./server/models/patient'),
   Task = require('./server/models/specialities'),
+  Task = require('./server/models/date'),
+  Task = require('./server/models/availableDate'),
 
   bodyParser = require('body-parser');
   
