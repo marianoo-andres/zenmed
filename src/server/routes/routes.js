@@ -24,8 +24,11 @@ module.exports = function(app) {
 
   var doctorList = require('../controllers/doctors.controller');
 
+  app.route('/doctors/:speciality')
+    .get(doctorList.list)
+
   app.route('/doctors')
-    .get(doctorList.list_all_doctors)
+    .get(doctorList.list)
     .post(doctorList.create_a_doctor);
 
 
@@ -45,4 +48,10 @@ module.exports = function(app) {
   app.route('/specialities/:specialityId')
     .put(specialitiList.update_a_speciality) //TODO: dev only
     .delete(specialitiList.delete_a_speciality); //TODO: dev only
+
+
+  var db = require('../controllers/create-db.controller');
+  app.route('/all/create').get(db.create_all)
+  app.route('/all/delete').get(db.delete_all)  
+
 };

@@ -3,8 +3,14 @@
 var mongoose = require('mongoose'),
   Doctor = mongoose.model('Doctors');
 
-exports.list_all_doctors = function(req, res) {
-  Doctor.find({}, function(err, doctor) {
+exports.list = function(req, res) {
+  var filters = {}
+
+  if(req.params.speciality){
+    filters['specialities.description'] = req.params.speciality
+  }
+
+  Doctor.find(filters, function(err, doctor) {
     if (err)
       res.send(err);
     res.json(doctor);
