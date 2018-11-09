@@ -104,10 +104,15 @@
 
 .user-action {
   height: 40px;
+  border-bottom: 1px solid $violet-light;
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   &:hover {
     .user-action-link {
-      background-color: $violet-light;
+      background-color: $cyan;
       padding-left: 25px;
     }
   }
