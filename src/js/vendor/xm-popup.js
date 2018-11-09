@@ -49,6 +49,7 @@ function XM_Popup(customConfig) {
    */
   const setupPopup = function () {
     config.popupElement = document.querySelector(config.popupContainer);
+    if (!config.popupElement) throw new Error(`Can't find ${config.popupContainer} in the DOM`);
     config.popupElement.style.position = 'absolute';
     config.popupElement.style.top = '120px';
     config.popupElement.style.left = '50%';
