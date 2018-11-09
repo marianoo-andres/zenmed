@@ -146,3 +146,55 @@
     padding: 22px 26px 30px;
   }
 }
+
+@media screen and (max-width: 1260px) {
+  .dashboard-header {
+    height: 150px;
+    padding: 0;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+
+    .dashboard-widget {
+      .dashboard-current-page {
+        margin: 0;
+      }
+    }
+
+    #search-form {
+      width: 600px;
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      margin-left: -300px;
+
+      .search-input {
+        input[type="text"] {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .dashboard-body {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .dashboard-header {
+    #search-form {
+      width: 500px;
+      margin-left: -250px;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .dashboard-header {
+    #search-form {
+      width: 350px;
+      margin-left: -175px;
+    }
+  }
+}
