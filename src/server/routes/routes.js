@@ -33,9 +33,11 @@ module.exports = function(app) {
 
 
   app.route('/doctors/:doctorId')
-    .get(doctorList.read_a_doctor)
     .put(doctorList.update_a_doctor)
     .delete(doctorList.delete_a_doctor);
+  
+  app.route('/doctor/:doctorId')
+    .get(doctorList.read_a_doctor)
 
 
   var specialitiList = require('../controllers/specialities.controller');
@@ -55,6 +57,13 @@ module.exports = function(app) {
   app.route('/patients/dates/:username/:canceled/:dateTime').get(patientsList.list_dates)
   app.route('/patients/dates/:username/:dateTime').get(patientsList.list_dates)
 
+  app.route('/patient/:id')
+    .get(patientsList.read_a_patient)
+    .put(patientsList.update_a_patient)
+    .delete(patientsList.delete_a_patient)
+    
+  app.route('/patients').get(patientsList.list)
+  
   var db = require('../controllers/create-db.controller');
   app.route('/all/create').get(db.create_all)
   app.route('/all/delete').get(db.delete_all)  
