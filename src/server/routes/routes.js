@@ -42,9 +42,8 @@ module.exports = function(app) {
 
   app.route('/specialities')
     .get(specialitiList.list_all_specialities)
-    .post(specialitiList.create_a_speciality);//TODO: dev only
-
-
+    .post(specialitiList.create_a_speciality);
+    
   app.route('/specialities/:specialityId')
     .put(specialitiList.update_a_speciality) //TODO: dev only
     .delete(specialitiList.delete_a_speciality); //TODO: dev only
