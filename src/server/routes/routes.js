@@ -50,6 +50,12 @@ module.exports = function(app) {
     .delete(specialitiList.delete_a_speciality); //TODO: dev only
 
 
+  var patientsList = require('../controllers/patients.controller');
+  app.route('/patients/dates/:username').get(patientsList.list_dates)
+  app.route('/patients/dates/:username/:canceled').get(patientsList.list_dates)
+  app.route('/patients/dates/:username/:canceled/:dateTime').get(patientsList.list_dates)
+  app.route('/patients/dates/:username/:dateTime').get(patientsList.list_dates)
+
   var db = require('../controllers/create-db.controller');
   app.route('/all/create').get(db.create_all)
   app.route('/all/delete').get(db.delete_all)  
