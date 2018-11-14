@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/server.js"
+    "start": "node ./src/server.js",
+    "debug": "node --nolazy --inspect-brk=3000 ./src/server.js"
   },
   "keywords": [],
   "author": "",

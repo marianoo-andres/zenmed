@@ -4,15 +4,16 @@
 var mongoose = require('mongoose'),
   User = mongoose.model('Users'),
   Doctor = mongoose.model('Doctors'),
-  Patient = mongoose.model('Patients');
+  Patient = mongoose.model('Patients'),
+  messageHandler = require('../handlers/message.handler');
 
 const ERROR_DUPLICATE_DOCUMENT = 11000
 
 exports.list_all_users = function(req, res) {
   User.find({}, function(err, user) {
     if (err)
-      res.send(err);
-    res.json(user);
+      res.send(messageHandler.error(err));
+    res.json(messageHandler.ok(user));
   });
 };
 
@@ -24,18 +25,18 @@ exports.create_a_user = function(req, res) {
         var new_doctor = new Doctor(req.body)
         new_doctor.save(function(err, doctor){
           if (!checkError(res, err, "Doctor")){
-            res.json({ created: true });
+            res.json(messageHandler.ok());
           }
         })
       } else if(new_user.role == 'Patient'){
         var new_patient = new Patient(req.body)
         new_patient.save(function(err, patient){
           if (!checkError(res, err, "Patient")){
-            res.json({ created: true });
+            res.json(messageHandler.ok());
           }
         })
       } else {
-        res.send({ created: false, error: 'Role is not valid' });
+        res.send(messageHandler.error('Role is not valid'))
       }
     }
   });
@@ -44,9 +45,9 @@ exports.create_a_user = function(req, res) {
 function checkError(res, err, entityName){
   if (err){
     if(err.code == ERROR_DUPLICATE_DOCUMENT){
-      res.send({ created: false, error: `${entityName} already exists` });  
+      res.send(messageHandler.error(`${entityName} already exists`));  
     } else {
-      res.send({ created: false, error: err });  
+      res.send(messageHandler.error(err));  
     }
     return true
   }
