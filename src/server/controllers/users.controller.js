@@ -19,7 +19,36 @@ exports.list_all_users = function(req, res) {
 
 exports.create_a_user = function(req, res) {
   var new_user = new User(req.body);
-  new_user.save(function(err, user) {
+  console.log(new_user);
+  new_user.save().then(function (result) {
+    console.log("Usuario creado!");
+    console.log(result);
+    if (new_user.role == 'Doctor') {
+      var new_doctor = new Doctor(req.body);
+      new_doctor.save().then(function (result) {
+        console.log("Doctor creado!");
+        console.log(result);
+        res.json(messageHandler.ok());
+      }, function (error) {
+        res.send(messageHandler.error(error));
+      })
+    }
+
+    else if (new_user.role == 'Patient') {
+      var new_patient = new Patient(req.body);
+      new_patient.save().then(function (result) {
+        console.log("Paciente creado!");
+        console.log(result);
+        res.json(messageHandler.ok());
+      }, function (error) {
+        res.send(messageHandler.error(error));
+      })
+    }
+  }, function (error) {
+    res.send(messageHandler.error(error));
+  });
+
+  /*new_user.save(function(err, user) {
     if (!checkError(res, err, "Username")){
       if(new_user.role == 'Doctor'){
         var new_doctor = new Doctor(req.body)
@@ -39,7 +68,7 @@ exports.create_a_user = function(req, res) {
         res.send(messageHandler.error('Role is not valid'))
       }
     }
-  });
+  });*/
 };
 
 function checkError(res, err, entityName){
@@ -89,14 +118,17 @@ exports.login = function(req, res) {  User.findOne( { username: req.body.usernam
     if (err)
       res.send({ isLogged: false, err: err });
     
-    if(user){
-      user.comparePassword(req.body.password, function(err, isMatch) {
-        if (err) throw err;
-        if(isMatch)
-          res.json({ isLogged: true, role: user.role });
-        else 
-          res.json({ isLogged: false });
-      });      
+    if (user){
+      if (user.password === req.body.password) {
+        res.json({ isLogged: true, role: user.role });
+      }
+      else {
+        res.json({ isLogged: false });
+      } 
+    }
+
+    else {
+      res.send({ isLogged: false });
     }
   });
 };
