@@ -19,15 +19,10 @@ exports.list_all_users = function(req, res) {
 
 exports.create_a_user = function(req, res) {
   var new_user = new User(req.body);
-  console.log(new_user);
   new_user.save().then(function (result) {
-    console.log("Usuario creado!");
-    console.log(result);
     if (new_user.role == 'Doctor') {
       var new_doctor = new Doctor(req.body);
       new_doctor.save().then(function (result) {
-        console.log("Doctor creado!");
-        console.log(result);
         res.json(messageHandler.ok());
       }, function (error) {
         res.send(messageHandler.error(error));
@@ -37,8 +32,6 @@ exports.create_a_user = function(req, res) {
     else if (new_user.role == 'Patient') {
       var new_patient = new Patient(req.body);
       new_patient.save().then(function (result) {
-        console.log("Paciente creado!");
-        console.log(result);
         res.json(messageHandler.ok());
       }, function (error) {
         res.send(messageHandler.error(error));
@@ -118,13 +111,26 @@ exports.login = function(req, res) {  User.findOne( { username: req.body.usernam
     if (err)
       res.send({ isLogged: false, err: err });
     
-    if (user){
-      if (user.password === req.body.password) {
-        res.json({ isLogged: true, role: user.role });
+    if (user) {
+       if (user.password !== req.body.password) {
+        res.json({ isLogged: false });
+        
       }
       else {
-        res.json({ isLogged: false });
+         if (user.role === 'Patient') {
+        Patient.findOne({ username: user.username}, function (err, patient) {
+          res.json({ isLogged: true, user: patient, role: user.role});
+        })
+      }
+
+        if (user.role === 'Doctor') {
+        Doctor.findOne({ username: user.username}, function (err, doctor) {
+          res.json({ isLogged: true, user: doctor, role: user.role});
+        })
+      }
+        
       } 
+     
     }
 
     else {
