@@ -32,11 +32,11 @@ module.exports = function(app) {
     .post(doctorList.create_a_doctor);
 
 
-  app.route('/doctors/:doctorId')
+  app.route('/doctors/:id')
     .put(doctorList.update_a_doctor)
     .delete(doctorList.delete_a_doctor);
   
-  app.route('/doctor/:doctorId')
+  app.route('/doctor/:id')
     .get(doctorList.read_a_doctor)
 
 
