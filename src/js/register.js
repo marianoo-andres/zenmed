@@ -9,7 +9,8 @@ const $ = require('jquery'),
       telefono = document.querySelector('#zm_reg_telefono'),
       user = document.querySelector('#zm_reg_user'),
       pwd = document.querySelector('#zm_reg_pwd'),
-      pwd2 = document.querySelector('#zm_reg_pwd2');
+      pwd2 = document.querySelector('#zm_reg_pwd2'),
+      regButton = document.querySelector('#register-button');
 
 if (registerForm) {
   registerForm.addEventListener('submit', function (e) {
@@ -31,10 +32,17 @@ if (registerForm) {
       method: 'post',
       data: data,
       success: function (data) {
-        console.log(data);
+        // console.log(data);
+        if (data.ok) {
+          regButton.style.backgroundColor = '#ff5e3a';
+          regButton.innerHTML = 'Registrado Correctamente!';
+        } else {
+          regButton.style.backgroundColor = '#db2e2e';
+          regButton.innerHTML = 'Error de registracion!';
+        }
       },
       error: function (data) {
-        console.err(data);
+        // console.err(data);
       }
     });
   });
