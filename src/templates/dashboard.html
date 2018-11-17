@@ -9,17 +9,17 @@
   <!-- NAVIGATION -->
   <ul class="navigation">
     <!-- NAVIGATION ITEM -->
-    <li class="navigation-item tooltip" data-tooltip-text="Historial de turnos">
+    <li id="historial-turnos-link" class="navigation-item tooltip" data-tooltip-text="Historial de turnos">
       <!-- NAVIGATION ITEM LINK -->
       <a class="navigation-item-link" href="#">
         <i class="icon icon-book fas fa-book"></i>
       </a>
-      <!-- /NAVIGATION ITEM LINK -->
+      <!-- /NAVIGATION ITEM LINK --> 
     </li>
     <!-- /NAVIGATION ITEM -->
 
     <!-- NAVIGATION ITEM -->
-    <li class="navigation-item selected tooltip" data-tooltip-text="Listado de Medicos">
+    <li id="listado-medicos-link" class="navigation-item tooltip" data-tooltip-text="Listado de Medicos">
       <!-- NAVIGATION ITEM LINK -->
       <a class="navigation-item-link" href="#">
         <i class="icon icon-cog far fa-address-card"></i>
@@ -29,20 +29,10 @@
     <!-- /NAVIGATION ITEM -->
 
     <!-- NAVIGATION ITEM -->
-    <li class="navigation-item tooltip" data-tooltip-text="Listado de Proximos Turnos">
+    <li id="listado-turnos-link" class="navigation-item tooltip" data-tooltip-text="Listado de Proximos Turnos">
       <!-- NAVIGATION ITEM LINK -->
       <a class="navigation-item-link" href="#">
         <i class="icon icon-user fas fa-user"></i>
-      </a>
-      <!-- /NAVIGATION ITEM LINK -->
-    </li>
-    <!-- /NAVIGATION ITEM -->
-
-    <!-- NAVIGATION ITEM -->
-    <li class="navigation-item tooltip" data-tooltip-text="Mi Perfil">
-      <!-- NAVIGATION ITEM LINK -->
-      <a class="navigation-item-link" href="#">
-        <i class="icon icon-cog fas fa-cog"></i>
       </a>
       <!-- /NAVIGATION ITEM LINK -->
     </li>
@@ -59,7 +49,7 @@
     <!-- DASHBOARD WIDGET -->
     <div class="dashboard-widget">
       <!-- DASHBOARD CURRENT PAGE -->
-      <p class="dashboard-current-page">Listado de Medicos</p>
+      <p class="dashboard-current-page"></p>
 
       <!-- SEARCH FORM -->
       <form id="search-form" method="get">
@@ -105,12 +95,6 @@
 
           <!-- USER ACTION -->
           <li class="user-action">
-            <a href="#" class="user-action-link">Ajustes</a>
-          </li>
-          <!-- USER ACTION -->
-
-          <!-- USER ACTION -->
-          <li class="user-action">
             <a href="#" id="logout-button" class="user-action-link">Cerrar Sesion</a>
           </li>
           <!-- USER ACTION -->
@@ -132,26 +116,20 @@
   <!-- MOBILE MENU -->
   <ul class="mobile-menu">
     <!-- MOBILE MENU ITEM -->
-    <li class="mobile-menu-item">
+    <li id="historial-turnos-link-mobile" class="mobile-menu-item">
       <a href="#" class="mobile-menu-item-link">Historial de Turnos</a>
     </li>
     <!-- /MOBILE MENU ITEM -->
 
     <!-- MOBILE MENU ITEM -->
-    <li class="mobile-menu-item">
+    <li id="listado-medicos-link-mobile" class="mobile-menu-item">
       <a href="#" class="mobile-menu-item-link">Listado de Medicos</a>
     </li>
     <!-- /MOBILE MENU ITEM -->
 
     <!-- MOBILE MENU ITEM -->
-    <li class="mobile-menu-item">
+    <li id="listado-turnos-link-mobile" class="mobile-menu-item">
       <a href="#" class="mobile-menu-item-link">Listado de Proximos Turnos</a>
-    </li>
-    <!-- /MOBILE MENU ITEM -->
-
-    <!-- MOBILE MENU ITEM -->
-    <li class="mobile-menu-item">
-      <a href="#" class="mobile-menu-item-link">Mi Perfil</a>
     </li>
     <!-- /MOBILE MENU ITEM -->
   </ul>
@@ -163,21 +141,7 @@
 <div class="dashboard-body-wrap">
   <!-- DASHBOARD BODY -->
   <div class="dashboard-body">
-    <!-- CONTENT WIDGET -->
-    <div class="content-widget">
-      <!-- CONTENT WIDGET HEADER -->
-      <div class="content-widget-header">
-        <p class="content-widget-header-title">Listado de Medicos</p>
-      </div>
-      <!-- /CONTENT WIDGET HEADER -->
-
-      <!-- CONTENT WIDGET BODY -->
-      <div class="content-widget-body">
-
-      </div>
-      <!-- /CONTENT WIDGET BODY -->
-    </div>
-    <!-- /CONTENT WIDGET -->
+    
   </div>
   <!-- /DASHBOARD BODY -->
 </div>

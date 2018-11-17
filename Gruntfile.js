@@ -105,7 +105,7 @@ module.exports = (grunt) => {
         tasks: ['browserify:build', 'uglify:build']
       },
       html: {
-        files: ['src/*.html'],
+        files: ['src/*.html', 'src/templates/*.html'],
         tasks: ['copy:build']
       }
     }

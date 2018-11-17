@@ -14,6 +14,7 @@
 
 .navigation-item {
   @include flex;
+  display: none;
 
   .navigation-item-link {
     display: block;
@@ -69,6 +70,7 @@
 
 .mobile-menu-item {
   border-bottom: 1px solid $violet-light;
+  display: none;
 
   &:last-child {
     border-bottom: none;
