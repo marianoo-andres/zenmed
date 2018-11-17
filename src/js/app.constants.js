@@ -1,4 +1,3 @@
 module.exports = {
-  DEBUG: true,
-  LOGGED: false
+  DEBUG: true
 };

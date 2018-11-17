@@ -34,12 +34,16 @@ module.exports = {
       loaderBox.append(loadingBoxDecoText);
       loaderOverlay.append(loaderBox);
       document.body.append(loaderOverlay);
+    },
+    hide: () => {
+      document.body.removeChild(document.querySelector('.loading-overlay'));
     }
   },
   cookies: {
     getCookie: (name) => {
-      const regString = `${name}=(\\w*);?`;
-      return (new RegExp(regString, 'ig')).exec(document.cookie)[1];
+      const regString = `${name}=(\\w*);?`,
+            cookie = (new RegExp(regString, 'ig')).exec(document.cookie);
+      if (cookie) return cookie[1];
     },
     setCookie: (name, value) => {
       document.cookie = `${name}=${value};`;
@@ -72,7 +76,7 @@ module.exports = {
             success: function (page) {
               const tid = window.setTimeout(function () {
                 const zmScript = document.createElement("script");
-                zmScript.src = 'app.min.js';
+                zmScript.src = 'dashboard.min.js';
                 document.title = 'Zenmed | Dashboard';                
                 document.body.innerHTML = page;
                 document.body.append(zmScript);
@@ -92,7 +96,36 @@ module.exports = {
       }
     });
   },
+  reload: function (params) {
+    document.querySelector('.login-page').style.display = 'none';
+
+    $.ajax({
+      url: 'http://localhost:3000/users/login',
+      method: 'post',
+      data: params,
+      success: function (data) {
+        $.ajax({
+          method: 'GET',
+          url: 'http://localhost:8099/templates/dashboard.html',
+          contentType: 'text/html',
+          success: function (page) {
+            const zmScript = document.createElement("script");
+            zmScript.src = 'dashboard.min.js';
+            document.title = 'Zenmed | Dashboard';                
+            document.body.innerHTML = page;
+            document.body.append(zmScript);
+
+            const username = document.querySelector('.user-name'),
+                  userinfo = document.querySelector('.user-info');
+            username.innerHTML = data.user.name;
+            userinfo.innerHTML = data.user.dni;
+          }
+        });
+      }
+    });
+  },
   logout: function () {
+    module.exports.cookies.unset();
     module.exports.loader.show('Cerrando Sesion');
 
     $.ajax({
