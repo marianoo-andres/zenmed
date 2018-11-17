@@ -53,6 +53,45 @@ module.exports = {
       document.cookie = 'password=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
   },
+  loadPage: function (config) {
+    $.ajax({
+      method: 'GET',
+      url: `http://localhost:8099/templates/${config.template}`,
+      contentType: 'text/html',
+      success: function (page) {
+        const zmScript = document.createElement("script");
+        zmScript.src = 'dashboard.min.js';
+        document.title = 'Zenmed | Dashboard'; 
+
+        if (config.timeout) {
+          const tid = window.setTimeout(function () {             
+            document.body.innerHTML = page;
+            document.body.append(zmScript);
+          }, config.timeout);
+        } else {
+          document.body.innerHTML = page;
+          document.body.append(zmScript);
+        }              
+      }
+    });
+  },
+  loadTemplate: function (config) {
+    $.ajax({
+      method: 'GET',
+      url: `http://localhost:8099/templates/${config.name}`,
+      contentType: 'text/html',
+      success: function (page) {
+        const dashBody = document.querySelector('.dashboard-body');
+        dashBody.innerHTML = page;
+        const widgetTitle = document.querySelector('.content-widget-header-title'),
+              pageTitle = document.querySelector('.dashboard-current-page');
+
+        pageTitle.innerHTML = config.title;
+        widgetTitle.innerHTML = config.title;
+        config.onLoad();
+      }
+    });
+  },
   login: function (params) {
     const loginError = document.querySelector('#login-error');
 
@@ -69,26 +108,8 @@ module.exports = {
           module.exports.cookies.setCookie('username', params.username);
           module.exports.cookies.setCookie('password', params.password);
 
-          $.ajax({
-            method: 'GET',
-            url: 'http://localhost:8099/templates/dashboard.html',
-            contentType: 'text/html',
-            success: function (page) {
-              const tid = window.setTimeout(function () {
-                const zmScript = document.createElement("script");
-                zmScript.src = 'dashboard.min.js';
-                document.title = 'Zenmed | Dashboard';                
-                document.body.innerHTML = page;
-                document.body.append(zmScript);
-
-                const username = document.querySelector('.user-name'),
-                      userinfo = document.querySelector('.user-info');
-                username.innerHTML = data.user.name;
-                userinfo.innerHTML = data.user.dni;
-
-              }, 2000);
-            }
-          });
+          window.zenmed = data;
+          module.exports.loadPage({template: 'dashboard.html', timeout: 2000});
 
         } else {
           if (loginError) loginError.style.display = 'block';
@@ -104,23 +125,8 @@ module.exports = {
       method: 'post',
       data: params,
       success: function (data) {
-        $.ajax({
-          method: 'GET',
-          url: 'http://localhost:8099/templates/dashboard.html',
-          contentType: 'text/html',
-          success: function (page) {
-            const zmScript = document.createElement("script");
-            zmScript.src = 'dashboard.min.js';
-            document.title = 'Zenmed | Dashboard';                
-            document.body.innerHTML = page;
-            document.body.append(zmScript);
-
-            const username = document.querySelector('.user-name'),
-                  userinfo = document.querySelector('.user-info');
-            username.innerHTML = data.user.name;
-            userinfo.innerHTML = data.user.dni;
-          }
-        });
+        window.zenmed = data;
+        module.exports.loadPage({template: 'dashboard.html'});
       }
     });
   },
@@ -142,5 +148,14 @@ module.exports = {
         }, 2000);
       }
     });
+  },
+  loadHistorialTurnos: function () {
+    console.log('Muestro historial de turnos');
+  },
+  loadListadoMedicos: function () {
+    console.log('Muestro listado de medicos');
+  },
+  loadListadoProximosTurnos: function () {
+    console.log('Muestro listado de proximos turnos');
   }
 };

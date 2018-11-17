@@ -7,3 +7,4 @@ require('./js/mobile-menu');
 require('./js/register');
 require('./js/login');
 require('./js/logout');
+require('./js/dashboard-base');
