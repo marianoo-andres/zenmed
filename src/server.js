@@ -10,6 +10,7 @@ var express = require('express'),
   Task = require('./server/models/patient'),
   Task = require('./server/models/specialities'),
   Task = require('./server/models/date'),
+  Task = require('./server/models/dateReserved'),
   Task = require('./server/models/availableDate'),
 
   cors = require('cors'),
