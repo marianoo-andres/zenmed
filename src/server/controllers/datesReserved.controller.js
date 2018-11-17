@@ -137,7 +137,6 @@ exports.get_available_dates = function(req, res) {
       availableDates.map(element => {
         element.time = element.date.format('HH:mm');
         element.date = element.date.format('DD/MM/YYYY');
-        delete element.doctor.id // Si se necesita el id del doctor comentar esta linea
         return element;
       })
       res.json(availableDates);
