@@ -28,6 +28,12 @@ module.exports = (grunt) => {
             cwd: 'src/font',
             src: '**',
             dest: 'dist/font'
+          },
+          {
+            expand: true,
+            cwd: 'src/templates',
+            src: '**',
+            dest: 'dist/templates'
           }
         ]
       }

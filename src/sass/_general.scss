@@ -99,3 +99,19 @@ p {
     left: 2px;
   }
 }
+
+.text-error {
+  margin-top: 12px;
+  padding-left: 5px;
+  @extend %paragraph;
+  color: $red;
+  font-size: $fs-12;
+  font-weight: $weight-medium;
+  display: none;
+
+  & + {
+    .button {
+      margin-top: 36px;
+    }
+  }
+}

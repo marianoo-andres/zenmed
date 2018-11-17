@@ -166,7 +166,7 @@
                 <div class="form-row-item">
                   <!-- INPUT WRAP -->
                   <div class="input-wrap user-input autofocus">
-                    <input type="text" name="zm_user" autocomplete="off">
+                    <input type="text" id="zm_user" name="zm_user" autocomplete="off">
                   </div>
                   <!-- /INPUT WRAP -->
                 </div>
@@ -180,13 +180,15 @@
                 <div class="form-row-item">
                   <!-- INPUT WRAP -->
                   <div class="input-wrap pwd-input">
-                    <input type="password" name="zm_pwd" autocomplete="off">
+                    <input type="password" id="zm_pwd" name="zm_pwd" autocomplete="off">
                   </div>
                   <!-- /INPUT WRAP -->
                 </div>
                 <!-- /FORM ROW ITEM -->
               </div>
               <!-- /FORM ROW -->
+
+              <p id="login-error" class="text-error">El usuario o contraseña introducidos son incorrectos</p>
 
               <!-- BUTTON -->
               <button class="button full cyan">Ingresar</button>
