@@ -1,7 +1,7 @@
 'use strict';
 var mongoose = require('mongoose')
-var bcrypt = require('bcrypt')
-var SALT_WORK_FACTOR = 10
+//var bcrypt = require('bcrypt')
+//var SALT_WORK_FACTOR = 10
 var Schema = mongoose.Schema;
     
 var UserSchema = new Schema({
@@ -11,7 +11,7 @@ var UserSchema = new Schema({
     Created_date: { type: Date, default: Date.now }
 });
 
-UserSchema.pre('save', function(next) {
+/*UserSchema.pre('save', function(next) {
     var user = this;
 
     // only hash the password if it has been modified (or is new)
@@ -30,14 +30,14 @@ UserSchema.pre('save', function(next) {
             next();
         });
     });
-});
+});*/
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+/*UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
-};
+};*/
 
 // User.findOne({ username: 'jmar777' }, function(err, user) {
 //     if (err) throw err;

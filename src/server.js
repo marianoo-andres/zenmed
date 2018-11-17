@@ -1,7 +1,7 @@
 
 var express = require('express'),
   app = express(),
-  port = process.env.PORT || 3000,
+  port = 3000,
   mongoose = require('mongoose'),
 
   //add models 

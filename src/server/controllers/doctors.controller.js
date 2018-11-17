@@ -9,7 +9,7 @@ exports.list = function(req, res) {
   var filters = {}
 
   if(req.params.speciality){
-    filters['specialities.description'] = req.params.speciality
+    filters['specialities'] = req.params.speciality
   }
 
   Doctor.find(filters, function(err, doctor) {
