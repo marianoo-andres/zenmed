@@ -5,3 +5,4 @@ require('./js/dropdowns');
 require('./js/tooltips');
 require('./js/mobile-menu');
 require('./js/register');
+require('./js/login');
