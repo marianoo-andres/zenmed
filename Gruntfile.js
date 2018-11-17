@@ -44,7 +44,8 @@ module.exports = (grunt) => {
           transform: [['babelify', {presets: ['env']}]]
         },
         files: {
-          'src/app.bundle.js': ['src/app.js']
+          'src/app.bundle.js': ['src/app.js'],
+          'src/dashboard.bundle.js': ['src/dashboard.js'],
         }
       }
     },
@@ -55,6 +56,13 @@ module.exports = (grunt) => {
             expand: true,
             cwd: 'src',
             src: 'app.bundle.js',
+            dest: 'dist/',
+            ext: '.min.js'
+          },
+          {
+            expand: true,
+            cwd: 'src',
+            src: 'dashboard.bundle.js',
             dest: 'dist/',
             ext: '.min.js'
           }
