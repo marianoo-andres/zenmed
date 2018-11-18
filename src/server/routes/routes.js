@@ -73,6 +73,7 @@ module.exports = function(app) {
   app.route('/reservedDates/create').post(datesReservedController.create_reserved_date);
   app.route('/reservedDates/patients/:id').get(datesReservedController.get_patient_reserved_dates);
   app.route('/reservedDates/:id').delete(datesReservedController.delete_patient_reserved_date);
+  app.route('/reservedDates/doctors/:id').get(datesReservedController.get_doctor_reserved_dates);
   
 
 };
