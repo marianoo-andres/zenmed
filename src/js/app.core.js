@@ -83,11 +83,9 @@ module.exports = {
       success: function (page) {
         const dashBody = document.querySelector('.dashboard-body');
         dashBody.innerHTML = page;
-        const widgetTitle = document.querySelector('.content-widget-header-title'),
-              pageTitle = document.querySelector('.dashboard-current-page');
+        const pageTitle = document.querySelector('.dashboard-current-page');
 
         pageTitle.innerHTML = config.title;
-        widgetTitle.innerHTML = config.title;
         config.onLoad();
       }
     });
