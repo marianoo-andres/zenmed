@@ -142,6 +142,7 @@ const addDatesRows = function(table, dates, actions, filter){
       });
     })
     
+    document.querySelector("#reserve-popup").style.visibility = "visible";
     app.createPopup({
       popupContainer: '#reserve-popup',
       openTriggers: openTriggersAdd,
@@ -151,6 +152,7 @@ const addDatesRows = function(table, dates, actions, filter){
       ]
     })
 
+    document.querySelector("#delete-reserve-popup").style.visibility = "visible";
     app.createPopup({
       popupContainer: '#delete-reserve-popup',
       openTriggers: openTriggersDelete,
