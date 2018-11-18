@@ -105,6 +105,7 @@ module.exports = {
 
           module.exports.cookies.setCookie('username', params.username);
           module.exports.cookies.setCookie('password', params.password);
+          module.exports.cookies.setCookie('user-id', data.user._id);
 
           window.zenmed = data;
           module.exports.loadPage({template: 'dashboard.html', timeout: 2000});
@@ -147,48 +148,33 @@ module.exports = {
       }
     });
   },
-  loadHistorialTurnos: function () {
-    console.log('Muestro historial de turnos');
+  loadHistorialTurnos: function (renderList) {
+    const historialTurnos = document.querySelector('#historialTurnos')
+    const patientId = module.exports.cookies.getCookie('user-id');
+    $.ajax({
+      url: `http://localhost:3000/reservedDates/patients/${patientId}`,
+      method: 'get',
+      success: function (dates) {
+        renderList(historialTurnos, dates, 
+          [{ containerClass: 'reprogram', icon: 'fa-marker' },
+           { containerClass: 'cancel', icon: 'fa-times' }])         
+      },
+      error: function(err){
+        console.log(err);
+      }
+    });
   },
-  loadListadoMedicos: function (D) {
-    console.log('Muestro listado de medicos' + D);
+  loadListadoMedicos: function (renderList) {
     const listadoMedicos = document.querySelector('#listadoMedicos')
     const especialidad = document.querySelector('#especiality_name')
 
-    listadoMedicos.innerHTML = ""
     $.ajax({
       url: 'http://localhost:3000/availableDates/5',
       method: 'get',
       success: function (dates) {
-        console.log(dates);
-        dates.forEach(date => {
-          if(date.doctor.speciality == especialidad.value)
-            listadoMedicos.innerHTML +=
-            '<div class="table-row">' +
-              '<div class="table-row-item">' +
-                '<img class="avatar-img small" src="img/users/default-user.png" alt="avatar-img">' +
-              '</div>' +
-              '<div class="table-row-item">' +
-                `<p class="table-row-item-text medic-name">${date.doctor.name}</p>` +
-              '</div>' +
-              '<div class="table-row-item">' +
-                `<p class="table-row-item-text medic-speciality">${date.doctor.speciality}</p>` +
-              '</div>' +
-              '<div class="table-row-item">' +
-                `<p class="table-row-item-text date-info">${date.date}</p>` +
-              '</div>' +
-              '<div class="table-row-item">' +
-                `<p class="table-row-item-text time-info">${date.time} hs</p>` +
-              '</div>' +
-              '<div class="table-row-item">' +
-                '<div class="actions">' +
-                  '<div class="action reserve">' +
-                    '<i class="icon fas fa-plus"></i>' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-            '</div>'
-        });
+        renderList(listadoMedicos, dates, 
+          [{ containerClass: 'reserve', icon: 'fa-plus' }],
+          (date) => date.doctor.speciality == especialidad.value)        
       },
       error: function(err){
         console.log(err);
