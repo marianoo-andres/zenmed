@@ -46,11 +46,12 @@ const renderAction = function(buttonId, action, date){
       data-doctor-name="${date.doctor.name}"
       data-doctor-speciality="${date.doctor.speciality}"
       data-date="${date.date}"
-      data-time="${date.time}"></i>
+      data-time="${date.time}"
+      data-date-id="${date._id}"></i>
   </div>`;
 }
 
-const showData = function(e){
+const showDataAdd = function(){
   let me = this
   const doctor = document.querySelector("#zm_reg_nombre_doctor"),
         doctorId = document.querySelector("#zm_reg_id_doctor"),
@@ -58,7 +59,8 @@ const showData = function(e){
         fecha = document.querySelector("#zm_reg_fecha"),
         hora = document.querySelector("#zm_reg_hora"),
         hdFecha = document.querySelector("#hd_reg_fecha"),
-        hdHora = document.querySelector("#hd_reg_hora");
+        hdHora = document.querySelector("#hd_reg_hora"),
+        reserveButton = document.querySelector('#take-date-button');
 
   doctor.value = `Médico: ${me.getAttribute('data-doctor-name')}`;
   doctorId.value = me.getAttribute('data-doctor-id');
@@ -67,6 +69,19 @@ const showData = function(e){
   hora.value = `Hora: ${me.getAttribute('data-time')}`;
   hdFecha.value = me.getAttribute('data-date');
   hdHora.value = me.getAttribute('data-time');
+
+  reserveButton.innerHTML = "Confirmar";
+  reserveButton.style.backgroundColor = "#44ccc7";
+}
+
+const setDeleteData = function(){
+  let me = this
+  const dateId = document.querySelector("#hd_reg_date_id"),
+  deleteDateButton = document.querySelector("#delete-date-button");
+  dateId.value = me.getAttribute('data-date-id');
+
+  deleteDateButton.innerHTML = "Confirmar";
+  deleteDateButton.style.backgroundColor = "#44ccc7";
 }
 
 const addDatesRows = function(table, dates, actions, filter){
@@ -104,23 +119,44 @@ const addDatesRows = function(table, dates, actions, filter){
   });
 
   if (actions) {
-    let openTriggers = []
+    let openTriggersAdd = []
+    let openTriggersDelete = []
     dates.forEach((date,i) => {
       actions.forEach(a => {
         let actionId = `#dateId${i}${a.icon}`
-        openTriggers.push(actionId)
         let button = document.querySelector(actionId)
-        if (button) {          
-          button.addEventListener('click', showData)
+
+        if(a.icon == 'fa-plus'){
+          openTriggersAdd.push(actionId)
+          if (button) {          
+            button.addEventListener('click', showDataAdd)
+          }
+        }else if(a.icon == 'fa-times'){
+          openTriggersDelete.push(actionId)
+          if (button) {          
+            button.addEventListener('click', setDeleteData)
+          }
+        }else if(a.icon == 'fa-marker'){
+
         }
       });
     })
-
+    
     app.createPopup({
       popupContainer: '#reserve-popup',
-      openTriggers: openTriggers,
+      openTriggers: openTriggersAdd,
       closeTriggers: [
-        '#reserve-popup-close'
+        '#reserve-popup-close',
+        '#close-take-date-button'
+      ]
+    })
+
+    app.createPopup({
+      popupContainer: '#delete-reserve-popup',
+      openTriggers: openTriggersDelete,
+      closeTriggers: [
+        '#delete-reserve-popup-close',
+        '#cancel-delete-button'
       ]
     })
   }

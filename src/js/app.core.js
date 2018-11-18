@@ -156,7 +156,7 @@ module.exports = {
       method: 'get',
       success: function (dates) {
         renderList(historialTurnos, dates, 
-          [{ containerClass: 'reprogram', icon: 'fa-marker' },
+          [//{ containerClass: 'reprogram', icon: 'fa-marker' },
            { containerClass: 'cancel', icon: 'fa-times' }])         
       },
       error: function(err){
@@ -174,7 +174,7 @@ module.exports = {
       success: function (dates) {
         renderList(listadoMedicos, dates, 
           [{ containerClass: 'reserve', icon: 'fa-plus' }],
-          (date) => date.doctor.speciality == especialidad.value)        
+          (date) => RegExp(`.*${especialidad.value.toUpperCase()}.*`).test(date.doctor.speciality.toUpperCase()))        
       },
       error: function(err){
         console.log(err);

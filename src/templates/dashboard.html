@@ -148,6 +148,44 @@
 </div>
 <!-- /DASHBOARD BODY WRAP -->
 
+
+<!-- POPUP WRAP -->
+<div id="delete-reserve-popup" class="popup-wrap medium">
+    <!-- CLOSE BUTTON -->
+    <i id="delete-reserve-popup-close" class="popup-close icon-close fas fa-times"></i>
+    <!-- /CLOSE BUTTON -->
+  
+    <!-- POPUP HEADER -->
+    <div class="popup-header">
+      <p class="popup-header-title"><i class="icon-user fas fa-user-circle"></i>Cancelación de turno</p>
+    </div>
+    <!-- /POPUP HEADER -->
+  
+    <!-- POPUP BODY -->
+    <div class="popup-body">
+      <!-- LOGIN FORM -->
+      <form id="delete-date-form" method="post">
+        <!-- FORM ROW -->
+        <div class="form-row">
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="hidden" id="hd_reg_date_id" name="hd_reg_date_id">            
+            <label>¿Desea cancelar el turno?</label>
+          </div>
+          <!-- /FORMROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+        <!-- BUTTON -->
+        <button id="delete-date-button" class="button full cyan">Confirmar</button>
+        <button style="visibility:hidden" id="cancel-delete-button" class="button full cyan">Cancelar</button>
+        <!-- /BUTTON -->
+      </form>
+      <!-- /LOGIN FORM -->
+    </div>
+    <!-- /POPUP BODY -->
+  </div>
+  <!-- /POPUP WRAP -->
+
 <!-- POPUP WRAP -->
 <div id="reserve-popup" class="popup-wrap medium">
   <!-- CLOSE BUTTON -->
@@ -199,6 +237,7 @@
       <!-- /FORM ROW -->
       <!-- BUTTON -->
       <button id="take-date-button" class="button full cyan">Confirmar</button>
+      <button style="visibility:hidden" id="close-take-date-button" class="button full cyan">Cancelar</button>
       <!-- /BUTTON -->
     </form>
     <!-- /LOGIN FORM -->
