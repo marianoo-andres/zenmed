@@ -42,7 +42,7 @@ exports.read_a_doctor = function(req, res) {
 
 
 exports.update_a_doctor = function(req, res) {
-  Doctor.findOneAndUpdate({_id: req.params.doctorId}, req.body, {new: true}, function(err, doctor) {
+  Doctor.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, doctor) {
     if (err)
       res.send(err);
     else 
