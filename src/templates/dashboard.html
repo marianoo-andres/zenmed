@@ -14,7 +14,7 @@
       <a class="navigation-item-link" href="#">
         <i class="icon icon-book fas fa-book"></i>
       </a>
-      <!-- /NAVIGATION ITEM LINK --> 
+      <!-- /NAVIGATION ITEM LINK -->
     </li>
     <!-- /NAVIGATION ITEM -->
 
@@ -58,7 +58,8 @@
           <!-- ICON SEARCH -->
           <i class="icon-search fas fa-search"></i>
           <!-- /ICON SEARCH -->
-          <input type="text" name="especiality_name" placeholder="Ingrese la especialidad deseada..." autocomplete="off">
+          <input type="text" id="especiality_name" name="especiality_name" placeholder="Ingrese la especialidad deseada..."
+            autocomplete="off">
         </div>
         <!-- /SEARCH INPUT -->
       </form>
@@ -141,8 +142,106 @@
 <div class="dashboard-body-wrap">
   <!-- DASHBOARD BODY -->
   <div class="dashboard-body">
-    
+
   </div>
   <!-- /DASHBOARD BODY -->
 </div>
 <!-- /DASHBOARD BODY WRAP -->
+
+
+<!-- POPUP WRAP -->
+<div id="delete-reserve-popup" class="popup-wrap medium" style="visibility: hidden">
+    <!-- CLOSE BUTTON -->
+    <i id="delete-reserve-popup-close" class="popup-close icon-close fas fa-times"></i>
+    <!-- /CLOSE BUTTON -->
+  
+    <!-- POPUP HEADER -->
+    <div class="popup-header">
+      <p class="popup-header-title"><i class="icon-user fas fa-user-circle"></i>Cancelación de turno</p>
+    </div>
+    <!-- /POPUP HEADER -->
+  
+    <!-- POPUP BODY -->
+    <div class="popup-body">
+      <!-- LOGIN FORM -->
+      <form id="delete-date-form" method="post">
+        <!-- FORM ROW -->
+        <div class="form-row">
+          <!-- FORM ROW ITEM -->
+          <div class="form-row-item">
+            <input type="hidden" id="hd_reg_date_id" name="hd_reg_date_id">            
+            <label>¿Desea cancelar el turno?</label>
+          </div>
+          <!-- /FORMROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+        <!-- BUTTON -->
+        <button id="delete-date-button" class="button full cyan">Confirmar</button>
+        <button style="visibility:hidden" id="cancel-delete-button" class="button full cyan">Cancelar</button>
+        <!-- /BUTTON -->
+      </form>
+      <!-- /LOGIN FORM -->
+    </div>
+    <!-- /POPUP BODY -->
+  </div>
+  <!-- /POPUP WRAP -->
+
+<!-- POPUP WRAP -->
+<div id="reserve-popup" class="popup-wrap medium" style="visibility: hidden">
+  <!-- CLOSE BUTTON -->
+  <i id="reserve-popup-close" class="popup-close icon-close fas fa-times"></i>
+  <!-- /CLOSE BUTTON -->
+
+  <!-- POPUP HEADER -->
+  <div class="popup-header">
+    <p class="popup-header-title"><i class="icon-user fas fa-user-circle"></i>Confirmar turno</p>
+  </div>
+  <!-- /POPUP HEADER -->
+
+  <!-- POPUP BODY -->
+  <div class="popup-body">
+    <!-- LOGIN FORM -->
+    <form id="take-date-form" method="post">
+      <!-- FORM ROW -->
+      <div class="form-row">
+        <!-- FORM ROW ITEM -->
+        <div class="form-row-item">
+          <input type="hidden" id="zm_reg_id_doctor" name="zm_reg_id_doctor">
+          <input disabled="disabled" type="text" id="zm_reg_nombre_doctor" name="zm_reg_nombre_doctor">
+        </div>
+        <!-- /FORMROW ITEM -->
+      </div>
+      <div class="form-row">
+        <!-- FORM ROW ITEM -->
+        <div class="form-row-item">
+          <input disabled="disabled" type="text" id="zm_reg_especialidad" name="zm_reg_especialidad">
+        </div>
+        <!-- /FORM ROW ITEM -->
+      </div>
+      <div class="form-row">
+        <!-- FORM ROW ITEM -->
+        <div class="form-row-item">
+          <input type="hidden" id="hd_reg_fecha" name="hd_reg_fecha">
+          <input disabled="disabled" type="text" id="zm_reg_fecha" name="zm_reg_fecha">
+        </div>
+        <!-- /FORM ROW ITEM -->
+      </div>
+      <div class="form-row">
+        <!-- FORM ROW ITEM -->
+        <div class="form-row-item">
+          <input type="hidden" id="hd_reg_hora" name="hd_reg_hora">
+          <input disabled="disabled" type="text" id="zm_reg_hora" name="zm_reg_hora">
+        </div>
+        <!-- /FORM ROW ITEM -->
+      </div>
+      <!-- /FORM ROW -->
+      <!-- BUTTON -->
+      <button id="take-date-button" class="button full cyan">Confirmar</button>
+      <button style="visibility:hidden" id="close-take-date-button" class="button full cyan">Cancelar</button>
+      <!-- /BUTTON -->
+    </form>
+    <!-- /LOGIN FORM -->
+  </div>
+  <!-- /POPUP BODY -->
+</div>
+<!-- /POPUP WRAP -->

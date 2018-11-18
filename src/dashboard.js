@@ -8,3 +8,4 @@ require('./js/register');
 require('./js/login');
 require('./js/logout');
 require('./js/dashboard-base');
+require('./js/reserve');

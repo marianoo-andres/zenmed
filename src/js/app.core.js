@@ -105,6 +105,7 @@ module.exports = {
 
           module.exports.cookies.setCookie('username', params.username);
           module.exports.cookies.setCookie('password', params.password);
+          module.exports.cookies.setCookie('user-id', data.user._id);
 
           window.zenmed = data;
           module.exports.loadPage({template: 'dashboard.html', timeout: 2000});
@@ -147,11 +148,38 @@ module.exports = {
       }
     });
   },
-  loadHistorialTurnos: function () {
-    console.log('Muestro historial de turnos');
+  loadHistorialTurnos: function (renderList) {
+    const historialTurnos = document.querySelector('#historialTurnos')
+    const patientId = module.exports.cookies.getCookie('user-id');
+    $.ajax({
+      url: `http://localhost:3000/reservedDates/patients/${patientId}`,
+      method: 'get',
+      success: function (dates) {
+        renderList(historialTurnos, dates, 
+          [//{ containerClass: 'reprogram', icon: 'fa-marker' },
+           { containerClass: 'cancel', icon: 'fa-times' }])         
+      },
+      error: function(err){
+        console.log(err);
+      }
+    });
   },
-  loadListadoMedicos: function () {
-    console.log('Muestro listado de medicos');
+  loadListadoMedicos: function (renderList) {
+    const listadoMedicos = document.querySelector('#listadoMedicos')
+    const especialidad = document.querySelector('#especiality_name')
+
+    $.ajax({
+      url: 'http://localhost:3000/availableDates/5',
+      method: 'get',
+      success: function (dates) {
+        renderList(listadoMedicos, dates, 
+          [{ containerClass: 'reserve', icon: 'fa-plus' }],
+          (date) => RegExp(`.*${especialidad.value.toUpperCase()}.*`).test(date.doctor.speciality.toUpperCase()))        
+      },
+      error: function(err){
+        console.log(err);
+      }
+    });
   },
   loadListadoProximosTurnos: function () {
     console.log('Muestro listado de proximos turnos');
