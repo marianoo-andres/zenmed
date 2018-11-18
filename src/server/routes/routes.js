@@ -69,9 +69,9 @@ module.exports = function(app) {
   app.route('/all/delete').get(db.delete_all)
   
   var datesReservedController = require('../controllers/datesReserved.controller');
-  app.route('/availableDates').get(datesReservedController.get_available_dates);
+  app.route('/availableDates/:days').get(datesReservedController.get_available_dates);
   app.route('/reservedDates/create').post(datesReservedController.create_reserved_date);
-  app.route('/reservedDates/patients/:id').post(datesReservedController.get_patient_reserved_dates);
+  app.route('/reservedDates/patients/:id').get(datesReservedController.get_patient_reserved_dates);
   app.route('/reservedDates/:id').delete(datesReservedController.delete_patient_reserved_date);
   
 

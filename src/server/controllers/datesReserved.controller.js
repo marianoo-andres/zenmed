@@ -98,9 +98,10 @@ function dateIsAvailable(availableDate, reservedDates) {
 
 
 exports.get_available_dates = function(req, res) {
+  var daysToAdd = parseInt(req.params.days);
   var format = 'DD/MM/YYYY'
   var fromDate = moment().format(format);
-  var toDate = moment().add(5, 'days').format(format);
+  var toDate = moment().add(daysToAdd, 'days').format(format);
   var doctors;
   var availableDates = [];
   var reservedDates = [];
