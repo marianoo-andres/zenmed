@@ -134,7 +134,13 @@ const addDatesRows = function(table, dates, actions, filter){
         }else if(a.icon == 'fa-times'){
           openTriggersDelete.push(actionId)
           if (button) {          
-            button.addEventListener('click', setDeleteData)
+            let dateParts = button.getAttribute('data-date').split('/');
+            let hourParts = button.getAttribute('data-time').replace('hs','').split(':');
+            if(new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[1], hourParts[0]) < new Date()){
+              button.style.visibility = 'hidden'
+            }else {
+              button.addEventListener('click', setDeleteData)
+            }
           }
         }else if(a.icon == 'fa-marker'){
 
@@ -162,6 +168,36 @@ const addDatesRows = function(table, dates, actions, filter){
       ]
     })
   }
+}
+
+const addNextDatesRows = function(table, dates){
+  if(!table || !dates) return;
+  filter = filter || (() => true)
+  table.innerHTML = ""
+  dates.forEach((date, i) => {
+    if(filter(date))
+      table.innerHTML +=
+      '<div class="table-row">' +
+        '<div class="table-row-item">' +
+          '<img class="avatar-img small" src="img/users/default-user.png" alt="avatar-img">' +
+        '</div>' +
+        '<div class="table-row-item">' +
+          `<p class="table-row-item-text medic-name">${date.patient.name}</p>` +
+        '</div>' +
+        '<div class="table-row-item">' +
+          `<p class="table-row-item-text medic-speciality">${date.patient.email}</p>` +
+        '</div>' +
+        '<div class="table-row-item">' +
+          `<p class="table-row-item-text medic-speciality">${date.patient.phone}</p>` +
+        '</div>' +
+        '<div class="table-row-item">' +
+          `<p class="table-row-item-text date-info">${date.date}</p>` +
+        '</div>' +
+        '<div class="table-row-item">' +
+          `<p class="table-row-item-text time-info">${date.time} hs</p>` +
+        '</div>' +
+      '</div>';
+  });
 }
 
 const patientLinks = [
