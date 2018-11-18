@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var DateReserved = mongoose.model('DateReserved');
 var messageHandler = require('../handlers/message.handler');
 var Doctor = mongoose.model('Doctors');
+var Patients = mongoose.model('Patients');
 
 exports.create_reserved_date = function(req, res) {
 
@@ -188,3 +189,40 @@ exports.delete_patient_reserved_date = function(req, res) {
       console.log(error);
     });
 };
+
+exports.get_doctor_reserved_dates = function(req, res) {
+  DateReserved.find({doctorId: req.params.id}).sort({datetime: 1})
+  .then(function (result) {
+    var dates = [];
+    var promises = []
+    result.forEach(element => {
+      promises.push(Patients.findById(element.patientId))
+    });
+
+    Promise.all(promises).then(pacients => {
+      for (var i = 0; i < result.length; i++) {
+        pacient = pacients[i];
+        var pacient = {
+          name: pacient.name,
+          email: pacient.email,
+          phoneNumber: pacient.phoneNumber,
+          dni: pacient.dni
+        };
+        var momentDate = moment(result[i].datetime); 
+        dates.push({
+          _id: result[i].id,
+          pacient: pacient,
+          date: momentDate.format('DD/MM/YYYY'),
+          time: momentDate.format('HH:mm')
+        });
+      }
+      res.json(dates);
+    });
+
+  })
+  .catch(function (error) {
+    res.send(messageHandler.error(error));
+    console.log(error);
+  })
+};
+
