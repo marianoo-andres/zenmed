@@ -34,6 +34,8 @@ const configSearch = function(){
     e.preventDefault();
     if(pageTitle.innerHTML == 'Listado de medicos'){
       app.loadListadoMedicos(addDatesRows)
+    }else if(pageTitle.innerHTML == 'Listado de proximos turnos'){
+      app.loadListadoProximosTurnos(addNextDatesRows)
     }else {
       app.loadHistorialTurnos(addDatesRows)
     }
@@ -136,7 +138,7 @@ const addDatesRows = function(table, dates, actions, filter){
           if (button) {          
             let dateParts = button.getAttribute('data-date').split('/');
             let hourParts = button.getAttribute('data-time').replace('hs','').split(':');
-            if(new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[1], hourParts[0]) < new Date()){
+            if(new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[0], hourParts[1]) < new Date()){
               button.style.visibility = 'hidden'
             }else {
               button.addEventListener('click', setDeleteData)
@@ -170,10 +172,10 @@ const addDatesRows = function(table, dates, actions, filter){
   }
 }
 
-const addNextDatesRows = function(table, dates){
+const addNextDatesRows = function(table, dates, filter){
   if(!table || !dates) return;
-  filter = filter || (() => true)
-  table.innerHTML = ""
+  filter = filter || (() => true);
+  table.innerHTML = "";
   dates.forEach((date, i) => {
     if(filter(date))
       table.innerHTML +=
@@ -182,13 +184,13 @@ const addNextDatesRows = function(table, dates){
           '<img class="avatar-img small" src="img/users/default-user.png" alt="avatar-img">' +
         '</div>' +
         '<div class="table-row-item">' +
-          `<p class="table-row-item-text medic-name">${date.patient.name}</p>` +
+          `<p class="table-row-item-text medic-name">${date.pacient.name}</p>` +
         '</div>' +
         '<div class="table-row-item">' +
-          `<p class="table-row-item-text medic-speciality">${date.patient.email}</p>` +
+          `<p class="table-row-item-text medic-speciality">${date.pacient.email}</p>` +
         '</div>' +
         '<div class="table-row-item">' +
-          `<p class="table-row-item-text medic-speciality">${date.patient.phone}</p>` +
+          `<p class="table-row-item-text medic-speciality">${date.pacient.phoneNumber}</p>` +
         '</div>' +
         '<div class="table-row-item">' +
           `<p class="table-row-item-text date-info">${date.date}</p>` +
@@ -254,7 +256,7 @@ const patientLinks = [
             app.loadTemplate({
               title: 'Listado de proximos turnos',
               name: 'listado-proximos-turnos.html',
-              onLoad: app.loadListadoProximosTurnos
+              onLoad: () => app.loadListadoProximosTurnos(addNextDatesRows)
             });
           }
         },
@@ -265,21 +267,24 @@ const patientLinks = [
             app.loadTemplate({
               title: 'Listado de proximos turnos',
               name: 'listado-proximos-turnos.html',
-              onLoad: app.loadListadoProximosTurnos
+              onLoad: () => app.loadListadoProximosTurnos(addNextDatesRows)
             });
           }
         },
       ],
       username = document.querySelector('.user-name'),
-      userinfo = document.querySelector('.user-info');
+      userinfo = document.querySelector('.user-info'),
+      searchFilter = document.querySelector('#especiality_name');
 
 username.innerHTML = window.zenmed.user.name;
 
 if (zenmed.role === 'Patient') {
   setMenuItems(patientLinks);
-  configSearch();
   userinfo.innerHTML = window.zenmed.user.dni;
+  searchFilter.placeholder = "Ingrese la especialidad deseada...";
 } else if (zenmed.role === 'Doctor') {
   setMenuItems(medicLinks);
   userinfo.innerHTML = window.zenmed.user.registrationNumber;
+  searchFilter.placeholder = "Ingrese el nombre del paciente...";
 }
+configSearch();

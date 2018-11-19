@@ -183,7 +183,25 @@ module.exports = {
       }
     });
   },
-  loadListadoProximosTurnos: function () {
-    console.log('Muestro listado de proximos turnos');
+  loadListadoProximosTurnos: function (renderList) {
+    const listadoMedicos = document.querySelector('#listadoProximosTurnos')
+    const paciente = document.querySelector('#especiality_name')
+    
+    $.ajax({
+      url: `http://localhost:3000/reservedDates/doctors/${module.exports.cookies.getCookie('user-id')}`,
+      method: 'get',
+      success: function (dates) {
+        renderList(listadoMedicos, dates,
+          (date) => {
+            let dateParts = date.date.split('/');
+            let hourParts = date.time.replace('hs','').split(':');
+            return new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[0], hourParts[1]) > new Date()
+              && RegExp(`.*${paciente.value.toUpperCase()}.*`).test(date.pacient.name.toUpperCase())
+          });
+      },
+      error: function(err){
+        console.log(err);
+      }
+    });
   }
 };
