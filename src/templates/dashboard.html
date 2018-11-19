@@ -37,6 +37,16 @@
       <!-- /NAVIGATION ITEM LINK -->
     </li>
     <!-- /NAVIGATION ITEM -->
+
+    <!-- NAVIGATION ITEM -->
+    <li id="administrar-doctores-link" class="navigation-item tooltip" data-tooltip-text="Administrar Doctores">
+      <!-- NAVIGATION ITEM LINK -->
+      <a class="navigation-item-link" href="#">
+        <i class="icon icon-user fas fa-user"></i>
+      </a>
+      <!-- /NAVIGATION ITEM LINK -->
+    </li>
+    <!-- /NAVIGATION ITEM -->
   </ul>
   <!-- /NAVIGATION -->
 </nav>
@@ -133,6 +143,12 @@
       <a href="#" class="mobile-menu-item-link">Listado de Proximos Turnos</a>
     </li>
     <!-- /MOBILE MENU ITEM -->
+
+    <!-- MOBILE MENU ITEM -->
+    <li id="administrar-doctores-link-mobile" class="mobile-menu-item">
+      <a href="#" class="mobile-menu-item-link">Administrar Doctores</a>
+    </li>
+    <!-- /MOBILE MENU ITEM -->
   </ul>
   <!-- /MOBILE MENU -->
 </div>
@@ -151,40 +167,40 @@
 
 <!-- POPUP WRAP -->
 <div id="delete-reserve-popup" class="popup-wrap medium" style="visibility: hidden">
-    <!-- CLOSE BUTTON -->
-    <i id="delete-reserve-popup-close" class="popup-close icon-close fas fa-times"></i>
-    <!-- /CLOSE BUTTON -->
-  
-    <!-- POPUP HEADER -->
-    <div class="popup-header">
-      <p class="popup-header-title"><i class="icon-user fas fa-user-circle"></i>Cancelación de turno</p>
-    </div>
-    <!-- /POPUP HEADER -->
-  
-    <!-- POPUP BODY -->
-    <div class="popup-body">
-      <!-- LOGIN FORM -->
-      <form id="delete-date-form" method="post">
-        <!-- FORM ROW -->
-        <div class="form-row">
-          <!-- FORM ROW ITEM -->
-          <div class="form-row-item">
-            <input type="hidden" id="hd_reg_date_id" name="hd_reg_date_id">            
-            <label>¿Desea cancelar el turno?</label>
-          </div>
-          <!-- /FORMROW ITEM -->
-        </div>
-        <!-- /FORM ROW -->
-        <!-- BUTTON -->
-        <button id="delete-date-button" class="button full cyan">Confirmar</button>
-        <button style="visibility:hidden" id="cancel-delete-button" class="button full cyan">Cancelar</button>
-        <!-- /BUTTON -->
-      </form>
-      <!-- /LOGIN FORM -->
-    </div>
-    <!-- /POPUP BODY -->
+  <!-- CLOSE BUTTON -->
+  <i id="delete-reserve-popup-close" class="popup-close icon-close fas fa-times"></i>
+  <!-- /CLOSE BUTTON -->
+
+  <!-- POPUP HEADER -->
+  <div class="popup-header">
+    <p class="popup-header-title"><i class="icon-user fas fa-user-circle"></i>Cancelación de turno</p>
   </div>
-  <!-- /POPUP WRAP -->
+  <!-- /POPUP HEADER -->
+
+  <!-- POPUP BODY -->
+  <div class="popup-body">
+    <!-- LOGIN FORM -->
+    <form id="delete-date-form" method="post">
+      <!-- FORM ROW -->
+      <div class="form-row">
+        <!-- FORM ROW ITEM -->
+        <div class="form-row-item">
+          <input type="hidden" id="hd_reg_date_id" name="hd_reg_date_id">            
+          <label>¿Desea cancelar el turno?</label>
+        </div>
+        <!-- /FORMROW ITEM -->
+      </div>
+      <!-- /FORM ROW -->
+      <!-- BUTTON -->
+      <button id="delete-date-button" class="button full cyan">Confirmar</button>
+      <button style="visibility:hidden" id="cancel-delete-button" class="button full cyan">Cancelar</button>
+      <!-- /BUTTON -->
+    </form>
+    <!-- /LOGIN FORM -->
+  </div>
+  <!-- /POPUP BODY -->
+</div>
+<!-- /POPUP WRAP -->
 
 <!-- POPUP WRAP -->
 <div id="reserve-popup" class="popup-wrap medium" style="visibility: hidden">
@@ -238,6 +254,157 @@
       <!-- BUTTON -->
       <button id="take-date-button" class="button full cyan">Confirmar</button>
       <button style="visibility:hidden" id="close-take-date-button" class="button full cyan">Cancelar</button>
+      <!-- /BUTTON -->
+    </form>
+    <!-- /LOGIN FORM -->
+  </div>
+  <!-- /POPUP BODY -->
+</div>
+<!-- /POPUP WRAP -->
+
+<!-- POPUP WRAP -->
+<div id="create-doctor-popup" class="popup-wrap medium" style="visibility: hidden">
+  <!-- CLOSE BUTTON -->
+  <i id="create-doctor-popup-close" class="popup-close icon-close fas fa-times"></i>
+  <!-- /CLOSE BUTTON -->
+
+  <!-- POPUP HEADER -->
+  <div class="popup-header">
+    <p class="popup-header-title"><i class="icon-user fas fa-user-circle"></i> Alta de Doctor</p>
+  </div>
+  <!-- /POPUP HEADER -->
+
+  <!-- POPUP BODY -->
+  <div class="popup-body">
+    <!-- LOGIN FORM -->
+    <form id="doctor-registration-form" method="post">
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ROW ITEM -->
+            <div class="form-row-item">
+                <!-- INPUT WRAP -->
+                <div>
+                    <input type="text" id="zm_doctor_username" name="zm_doctor_username" placeholder="Usuario" autocomplete="off">
+                </div>
+                <!-- /INPUT WRAP -->
+            </div>
+            <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ROW ITEM -->
+            <div class="form-row-item">
+                <!-- INPUT WRAP -->
+                <div>
+                    <input type="password" id="zm_doctor_password" name="zm_doctor_password" placeholder="Contraseña" autocomplete="off">
+                </div>
+                <!-- /INPUT WRAP -->
+            </div>
+            <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ROW ITEM -->
+            <div class="form-row-item">
+                <!-- INPUT WRAP -->
+                <div>
+                    <input type="text" id="zm_doctor_name" name="zm_doctor_name" placeholder="Nombre y apellido" autocomplete="off">
+                </div>
+                <!-- /INPUT WRAP -->
+            </div>
+            <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ROW ITEM -->
+            <div class="form-row-item">
+                <!-- INPUT WRAP -->
+                <div>
+                    <input type="text" id="zm_registration_number" name="zm_registration_number" placeholder="Matricula" autocomplete="off">
+                </div>
+                <!-- /INPUT WRAP -->
+            </div>
+            <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ROW ITEM -->
+            <div class="form-row-item">
+                <!-- INPUT WRAP -->
+                <div>
+                    <input type="text" id="zm_appointment_duration" name="zm_appointment_duration" placeholder="Duracion del Turno (min.)" autocomplete="off">
+                </div>
+                <!-- /INPUT WRAP -->
+            </div>
+            <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ROW ITEM -->
+            <div class="form-row-item">
+                <!-- INPUT WRAP -->
+                <div>
+                    <input type="text" id="zm_start_time" name="zm_start_time" placeholder="Comienzo Jornada (hs.)" autocomplete="off">
+                </div>
+                <!-- /INPUT WRAP -->
+            </div>
+            <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ROW ITEM -->
+            <div class="form-row-item">
+                <!-- INPUT WRAP -->
+                <div>
+                    <input type="text" id="zm_end_time" name="zm_end_time" placeholder="Fin Jornada (hs.)" autocomplete="off">
+                </div>
+                <!-- /INPUT WRAP -->
+            </div>
+            <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ROW ITEM -->
+            <div class="form-row-item">
+                <!-- INPUT WRAP -->
+                <div>
+                  <!-- SELECT WRAP -->
+                  <div class="select-wrap">
+                    <i class="arrow fas fa-chevron-down"></i>
+                    <select id="zm_specialty" name="zm_specialty">
+                        <option value="0">Seleccione Especialidad</option>
+                        <option value="Cardiologia">Cardiologia</option>
+                        <option value="Gastroenterologia">Gastroenterologia</option>
+                        <option value="Ginecologia">Ginecologia</option>
+                        <option value="Neumonologia">Neumonologia</option>
+                        <option value="Neurologia">Neurologia</option>
+                        <option value="Pediatria">Pediatria</option>
+                    </select>
+                  </div>
+                  <!-- /SELECT WRAP -->
+                </div>
+                <!-- /INPUT WRAP -->
+            </div>
+            <!-- /FORM ROW ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+      <!-- BUTTON -->
+      <button id="crear-medico-button" class="button full cyan">Crear Medico</button>
       <!-- /BUTTON -->
     </form>
     <!-- /LOGIN FORM -->

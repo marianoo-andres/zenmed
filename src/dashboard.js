@@ -9,3 +9,4 @@ require('./js/login');
 require('./js/logout');
 require('./js/dashboard-base');
 require('./js/reserve');
+require('./js/admin');
