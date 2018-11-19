@@ -101,9 +101,8 @@ function dateIsAvailable(availableDate, reservedDates) {
 exports.get_available_dates = function(req, res) {
   var daysToAdd = parseInt(req.params.days);
   var format = 'DD/MM/YYYY'
-  var fromDate = moment().format(format);
-  // Se muestran los turnos disponibles a partir de la fecha actual + 1 dia
-  fromDate.add(1, 'days');
+    // Se muestran los turnos disponibles a partir de la fecha actual + 1 dia
+  var fromDate = moment().add(1, 'days').format(format);
   var toDate = moment().add(daysToAdd, 'days').format(format);
   var doctors;
   var availableDates = [];
