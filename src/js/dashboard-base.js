@@ -272,19 +272,46 @@ const patientLinks = [
           }
         },
       ],
+      adminLinks = [
+        {
+          link: '#administrar-doctores-link',
+          default: true,
+          onClick: function () {
+            app.loadTemplate({
+              title: 'Administrar doctores',
+              name: 'administrar-doctores.html',
+              onLoad: app.loadAdministrarDoctores
+            });
+          }
+        },
+        {
+          link: '#administrar-doctores-link-mobile',
+          default: true,
+          onClick: function () {
+            app.loadTemplate({
+              title: 'Administrar doctores',
+              name: 'administrar-doctores.html',
+              onLoad: app.loadAdministrarDoctores
+            });
+          }
+        }
+      ],
       username = document.querySelector('.user-name'),
       userinfo = document.querySelector('.user-info'),
       searchFilter = document.querySelector('#especiality_name');
 
-username.innerHTML = window.zenmed.user.name;
-
 if (zenmed.role === 'Patient') {
   setMenuItems(patientLinks);
+  username.innerHTML = window.zenmed.user.name;
   userinfo.innerHTML = window.zenmed.user.dni;
   searchFilter.placeholder = "Ingrese la especialidad deseada...";
 } else if (zenmed.role === 'Doctor') {
   setMenuItems(medicLinks);
+  username.innerHTML = window.zenmed.user.name;
   userinfo.innerHTML = window.zenmed.user.registrationNumber;
   searchFilter.placeholder = "Ingrese el nombre del paciente...";
+} else if (zenmed.role === 'Admin') {
+  setMenuItems(adminLinks);
+  username.innerHTML = window.zenmed.user.username;
 }
 configSearch();

@@ -7,6 +7,12 @@
   display: grid;
 }
 
+@mixin appearance($value) {
+  appearance: $value;
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+}
+
 @mixin transition($duration, $who: all, $ease: ease-in-out) {
   transition: $who $duration $ease;
   -webkit-transition: $who $duration $ease;

@@ -10,7 +10,8 @@ const $ = require('jquery'),
     duration = document.querySelector('#zm_appointment_duration'),
     startTime = document.querySelector('#zm_start_time'),
     endTime = document.querySelector('#zm_end_time'),
-    specialty = document.querySelector('#zm_specialty');
+    specialty = document.querySelector('#zm_specialty'),
+    createMedicButton = document.querySelector('#crear-medico-button');
 
 if (doctorRegistrationForm) {
     doctorRegistrationForm.addEventListener('submit', function(e) {
@@ -33,13 +34,19 @@ if (doctorRegistrationForm) {
             data: data,
             success: function(data) {
                 if (data.ok) {
-                    alert('El medico se ha registrado correctamente.');
+                    app.loader.show('Cargando');
+                    window.setTimeout(() => {
+                        document.location.reload();
+                    }, 2000);
+
                 } else {
-                    alert('Se ha producido un error al intentar registrar al medico.');
+                    createMedicButton.style.backgroundColor = '#db2e2e';
+                    createMedicButton.innerHTML = 'Error de registracion!';
                 }
             },
             error: function(data) {
-                alert('Se ha producido un error al intentar registrar al medico.');
+                createMedicButton.style.backgroundColor = '#db2e2e';
+                createMedicButton.innerHTML = 'Error de registracion!';
             }
         });
     });

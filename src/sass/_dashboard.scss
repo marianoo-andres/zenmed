@@ -149,6 +149,17 @@
 
   .content-widget-body {
     padding: 22px 26px 30px;
+    position: relative;
+
+    .button {
+      &:first-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        position: absolute;
+        top: 40px;
+        right: -40px;
+      }
+    }
   }
 }
 

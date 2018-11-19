@@ -203,5 +203,69 @@ module.exports = {
         console.log(err);
       }
     });
+  },
+  loadAdministrarDoctores: function () {
+    const wrap = document.querySelector('#administrar-doctores-wrap');
+
+    module.exports.createPopup({
+      popupContainer: '#create-doctor-popup',
+      openTriggers: [
+        '#create-doctor-popup-open'
+      ],
+      closeTriggers: [
+        '#create-doctor-popup-close'
+      ]
+    });
+    
+    $.ajax({
+      url: 'http://localhost:3000/doctors',
+      method: 'GET',
+      success: function (data) {
+        data.forEach( (el) => {
+          wrap.innerHTML += `
+          <!-- TABLE ROW -->
+          <div class="table-row">
+            <!-- TABLE ROW ITEM -->
+            <div class="table-row-item">
+              <!-- AVATAR IMG -->
+              <img class="avatar-img small" src="img/users/default-user.png" alt="avatar-img">
+              <!-- /AVATAR IMG -->
+            </div>
+            <!-- /TABLE ROW ITEM -->
+
+            <!-- TABLE ROW ITEM -->
+            <div class="table-row-item">
+              <p class="table-row-item-text pacient-name">${el.name}</p>
+            </div>
+            <!-- /TABLE ROW ITEM -->
+
+            <!-- TABLE ROW ITEM -->
+            <div class="table-row-item">
+              <p class="table-row-item-text pacient-email">${el.registrationNumber}</p>
+            </div>
+            <!-- /TABLE ROW ITEM -->
+
+            <!-- TABLE ROW ITEM -->
+            <div class="table-row-item">
+              <p class="table-row-item-text pacient-phone">${el.specialities}</p>
+            </div>
+            <!-- /TABLE ROW ITEM -->
+
+            <!-- TABLE ROW ITEM -->
+            <div class="table-row-item">
+              <p class="table-row-item-text date-info">${el.startTime}hs - ${el.endTime}hs</p>
+            </div>
+            <!-- /TABLE ROW ITEM -->
+
+            <!-- TABLE ROW ITEM -->
+            <div class="table-row-item">
+              <p class="table-row-item-text date-info">${el.duration} min</p>
+            </div>
+            <!-- /TABLE ROW ITEM -->
+          </div>
+          <!-- /TABLE ROW -->`;
+        });
+      }
+    })
   }
 };

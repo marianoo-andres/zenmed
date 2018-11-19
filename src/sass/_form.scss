@@ -1,6 +1,7 @@
 input[type="text"],
 input[type="password"],
-textarea {
+textarea,
+select {
   width: 100%;
   padding: 14px 20px;
   border: 1px solid $color-line-dark;
@@ -20,6 +21,22 @@ textarea {
 }
 :-moz-placeholder { /* Firefox 18- */
   color: $gray-lighter;
+}
+
+.select-wrap {
+  position: relative;
+
+  .arrow {
+    color: $violet-light;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+}
+
+select {
+  @include appearance(none);
+  cursor: pointer;
 }
 
 label {
