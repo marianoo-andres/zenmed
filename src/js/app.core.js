@@ -149,15 +149,17 @@ module.exports = {
     });
   },
   loadHistorialTurnos: function (renderList) {
-    const historialTurnos = document.querySelector('#historialTurnos')
+    const historialTurnos = document.querySelector('#historialTurnos');
     const patientId = module.exports.cookies.getCookie('user-id');
+    const especialidad = document.querySelector('#especiality_name');
     $.ajax({
       url: `http://localhost:3000/reservedDates/patients/${patientId}`,
       method: 'get',
       success: function (dates) {
         renderList(historialTurnos, dates, 
           [//{ containerClass: 'reprogram', icon: 'fa-marker' },
-           { containerClass: 'cancel', icon: 'fa-times' }])         
+           { containerClass: 'cancel', icon: 'fa-times' }],
+           (date) => RegExp(`.*${especialidad.value.toUpperCase()}.*`).test(date.doctor.speciality.toUpperCase()))         
       },
       error: function(err){
         console.log(err);
@@ -181,7 +183,25 @@ module.exports = {
       }
     });
   },
-  loadListadoProximosTurnos: function () {
-    console.log('Muestro listado de proximos turnos');
+  loadListadoProximosTurnos: function (renderList) {
+    const listadoMedicos = document.querySelector('#listadoProximosTurnos')
+    const paciente = document.querySelector('#especiality_name')
+    
+    $.ajax({
+      url: `http://localhost:3000/reservedDates/doctors/${module.exports.cookies.getCookie('user-id')}`,
+      method: 'get',
+      success: function (dates) {
+        renderList(listadoMedicos, dates,
+          (date) => {
+            let dateParts = date.date.split('/');
+            let hourParts = date.time.replace('hs','').split(':');
+            return new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[0], hourParts[1]) > new Date()
+              && RegExp(`.*${paciente.value.toUpperCase()}.*`).test(date.pacient.name.toUpperCase())
+          });
+      },
+      error: function(err){
+        console.log(err);
+      }
+    });
   }
 };
