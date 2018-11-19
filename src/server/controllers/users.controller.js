@@ -37,6 +37,9 @@ exports.create_a_user = function(req, res) {
         res.send(messageHandler.error(error));
       })
     }
+    else if (new_user.role == 'Admin') {
+      res.json(messageHandler.ok());
+    }
   }, function (error) {
     res.send(messageHandler.error(error));
   });
@@ -128,6 +131,9 @@ exports.login = function(req, res) {  User.findOne( { username: req.body.usernam
           res.json({ isLogged: true, user: doctor, role: user.role});
         })
       }
+        if (user.role === 'Admin') {
+          res.json({ isLogged: true, user: user, role: user.role});
+        }
         
       } 
      
