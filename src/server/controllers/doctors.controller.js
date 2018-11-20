@@ -58,13 +58,10 @@ exports.delete_a_doctor = function(req, res) {
       console.log(doctor);
       User.deleteOne({ username: doctor.username})
         .then(function () {
-          console.log("Delete one doctor");
           Doctor.deleteOne({_id: req.params.id})
             .then(function () {
-              console.log("Delete datereserved");
               DateReserved.deleteMany({doctorId: req.params.id})
                 .then(function () {
-                  console.log("LLEGUE ACA");
                   res.json(messageHandler.ok('doctor successfully deleted'));
               })
             })
