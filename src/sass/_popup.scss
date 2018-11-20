@@ -4,6 +4,11 @@
   background-color: $white;
   position: relative;
 
+  &.centered {
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+
   &.medium {
     width: 500px;
 

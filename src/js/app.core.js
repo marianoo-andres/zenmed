@@ -267,5 +267,74 @@ module.exports = {
         });
       }
     })
+  },
+  loadPerfil: function () {
+    const createFormRow = function (fieldName) {
+      const row = document.createElement('div'),
+            rowItem = document.createElement('div'),
+            rowInput = document.createElement('input');
+      
+      row.classList.add('form-row');
+      rowItem.classList.add('form-row-item');
+      rowInput.type = 'text';
+      rowInput.setAttribute('value', zenmed.user[fieldName]);
+      rowInput.setAttribute('id', `zm_${fieldName}`);
+      if (fieldName === 'birthdate') {
+        const d = new Date(zenmed.user[fieldName]);
+        rowInput.setAttribute('value', `${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}`);
+      }
+      rowItem.append(rowInput);
+      row.append(rowItem);
+
+      return row;
+    };
+
+    const profileForm = document.querySelector('#profile-form');
+    let fields, url;
+
+    if (zenmed.role === 'Patient') {
+      url = `http://localhost:3000/patient/${zenmed.user._id}`;
+      fields = {
+        name: createFormRow('name'),
+        dni: createFormRow('dni'),
+        email: createFormRow('email'),
+        phoneNumber: createFormRow('phoneNumber'),
+        birthdate: createFormRow('birthdate')
+      };
+    } else if (zenmed.role === 'Medic') {
+      url = `http://localhost:3000/doctors/${zenmed.user._id}`;
+    }
+
+    for (const field in fields) {
+      profileForm.append(fields[field]);
+    }
+
+    profileForm.innerHTML += `<button id="register-button" class="button full cyan">Guardar Cambios</button>`;
+
+    profileForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const fieldData = {};
+
+      for (const field in fields) {
+        fieldData[field] = document.querySelector(`#zm_${field}`).value;
+      }
+
+      $.ajax({
+        url: url,
+        method: 'PUT',
+        data: fieldData,
+        success: function (data) {
+          console.log(data);
+          module.exports.loader.show('Guardando');
+          window.setTimeout(() => {
+              document.location.reload();
+          }, 2000);
+        },
+        error: function (data) {
+          console.err(data);
+        }
+      });
+    });
   }
 };
