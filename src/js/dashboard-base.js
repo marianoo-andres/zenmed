@@ -90,10 +90,10 @@ const addDatesRows = function(table, dates, actions, filter){
   if(!table || !dates) return;
   filter = filter || (() => true)
   table.innerHTML = ""
-  dates.forEach((date, i) => {
-    if(filter(date))
-      table.innerHTML +=
-      '<div class="table-row">' +
+  table.innerHTML = dates.map((date, i) => {
+    //if(filter(date))
+      //table.innerHTML +=
+      return '<div class="table-row">' +
         '<div class="table-row-item">' +
           '<img class="avatar-img small" src="img/users/default-user.png" alt="avatar-img">' +
         '</div>' +
@@ -118,7 +118,7 @@ const addDatesRows = function(table, dates, actions, filter){
             :
             "") +
       '</div>';
-  });
+  }).join('');
 
   if (actions) {
     let openTriggersAdd = []
