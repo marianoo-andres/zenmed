@@ -269,20 +269,23 @@ module.exports = {
     })
   },
   loadPerfil: function () {
-    const createFormRow = function (fieldName) {
+    const createFormRow = function (config) {
       const row = document.createElement('div'),
             rowItem = document.createElement('div'),
-            rowInput = document.createElement('input');
+            rowInput = document.createElement('input'),
+            rowLabel = document.createElement('label');
       
       row.classList.add('form-row');
       rowItem.classList.add('form-row-item');
+      rowLabel.innerHTML = `${config.printName}:`;
       rowInput.type = 'text';
-      rowInput.setAttribute('value', zenmed.user[fieldName]);
-      rowInput.setAttribute('id', `zm_${fieldName}`);
-      if (fieldName === 'birthdate') {
-        const d = new Date(zenmed.user[fieldName]);
+      rowInput.setAttribute('value', zenmed.user[config.fieldName]);
+      rowInput.setAttribute('id', `zm_${config.fieldName}`);
+      if (config.fieldName === 'birthdate') {
+        const d = new Date(zenmed.user[config.fieldName]);
         rowInput.setAttribute('value', `${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}`);
       }
+      rowItem.append(rowLabel);
       rowItem.append(rowInput);
       row.append(rowItem);
 
@@ -295,14 +298,55 @@ module.exports = {
     if (zenmed.role === 'Patient') {
       url = `http://localhost:3000/patient/${zenmed.user._id}`;
       fields = {
-        name: createFormRow('name'),
-        dni: createFormRow('dni'),
-        email: createFormRow('email'),
-        phoneNumber: createFormRow('phoneNumber'),
-        birthdate: createFormRow('birthdate')
+        name: createFormRow({
+          fieldName: 'name',
+          printName: 'Nombre y Apellido' 
+        }),
+        dni: createFormRow({
+          fieldName: 'dni',
+          printName: 'DNI' 
+        }),
+        email: createFormRow({
+          fieldName: 'email',
+          printName: 'Email' 
+        }),
+        phoneNumber: createFormRow({
+          fieldName: 'phoneNumber',
+          printName: 'Telefono' 
+        }),
+        birthdate: createFormRow({
+          fieldName: 'birthdate',
+          printName: 'Fecha de Nacimiento' 
+        })
       };
-    } else if (zenmed.role === 'Medic') {
+    } else if (zenmed.role === 'Doctor') {
       url = `http://localhost:3000/doctors/${zenmed.user._id}`;
+      fields = {
+        name: createFormRow({
+          fieldName: 'name',
+          printName: 'Nombre y Apellido' 
+        }),
+        registrationNumber: createFormRow({
+          fieldName: 'registrationNumber',
+          printName: 'Numero de Matricula' 
+        }),
+        specialities: createFormRow({
+          fieldName: 'specialities',
+          printName: 'Especialidad' 
+        }),
+        startTime: createFormRow({
+          fieldName: 'startTime',
+          printName: 'Hora de Inicio' 
+        }),
+        endTime: createFormRow({
+          fieldName: 'endTime',
+          printName: 'Hora de Fin' 
+        }),
+        duration: createFormRow({
+          fieldName: 'duration',
+          printName: 'Duracion de turno' 
+        })
+      };
     }
 
     for (const field in fields) {
