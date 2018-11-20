@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
   User = mongoose.model('Users'),
   Doctor = mongoose.model('Doctors'),
   Patient = mongoose.model('Patients'),
+  moment = require('moment'),
   messageHandler = require('../handlers/message.handler');
 
 const ERROR_DUPLICATE_DOCUMENT = 11000
@@ -30,6 +31,7 @@ exports.create_a_user = function(req, res) {
     }
 
     else if (new_user.role == 'Patient') {
+      req.body.birthdate = moment(req.body.birthdate, 'DD/MM/YYYY').format('MM-DD-YYYY');
       var new_patient = new Patient(req.body);
       new_patient.save().then(function (result) {
         res.json(messageHandler.ok());

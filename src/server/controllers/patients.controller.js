@@ -3,37 +3,19 @@
 var mongoose = require('mongoose'),
   User = mongoose.model('Users'),
   Patients = mongoose.model('Patients'),
+  moment = require('moment'),
   messageHandler = require('../handlers/message.handler');
-
-exports.list_dates = function(req, res) {
-  var filter = { canceled: false, dateTime: new Date() }
-
-  if(req.params.canceled){
-    filter.canceled = req.params.canceled
-  }
-  if(req.params.dateTime){
-    filter.dateTime = { $gt: req.params.dateTime }
-  }
-  
-  Patients.find({ username : req.params.username }, function(err, patients) {
-    if (err){
-      res.send(err);
-    } else {
-      if(patients){
-        res.json(patients[0].dates.filter(d => d.canceled == filter.canceled && d.dateTime >= filter.dateTime ));
-      } else {
-        res.json([]);
-      }
-    }
-  });
-};
 
 exports.read_a_patient = function(req, res) {
   Patients.findById(req.params.id, function(err, patient) {
-    if (err)
+    if (err) {
       res.send(err);
-    else 
-      res.json(patient);
+    }
+    else {
+      var p = JSON.parse(JSON.stringify(patient));
+      p.birthdate = moment(p.birthdate).format('DD/MM/YYYY');
+      res.json(p);
+    }
   });
 };
 
@@ -47,14 +29,20 @@ exports.list = function(req, res) {
 };
 
 exports.update_a_patient = function(req, res) {
+  if (req.body.birthdate) {
+    req.body.birthdate = moment(req.body.birthdate, 'DD/MM/YYYY').format('MM-DD-YYYY');
+  }
   Patients.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, patient) {
-    if (err)
+    if (err) {
       res.send(err);
-    else 
-      res.json(patient);
+    }
+    else {
+      var p = JSON.parse(JSON.stringify(patient));
+      p.birthdate = moment(p.birthdate).format('DD/MM/YYYY');
+      res.json(p);
+    }
   });
 };
-
 
 exports.delete_a_patient = function(req, res) {  
   Patients.findById(req.params.id, function(err, patient){
