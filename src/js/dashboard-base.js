@@ -294,11 +294,26 @@ const patientLinks = [
               onLoad: app.loadAdministrarDoctores
             });
           }
+        },
+      ],
+      sharedLinks = [
+        {
+          link: '#perfil-link',
+          default: false,
+          onClick: function () {
+            app.loadTemplate({
+              title: 'Perfil',
+              name: 'perfil.html',
+              onLoad: app.loadPerfil
+            });
+          }
         }
       ],
       username = document.querySelector('.user-name'),
       userinfo = document.querySelector('.user-info'),
       searchFilter = document.querySelector('#especiality_name');
+
+setMenuItems(sharedLinks);
 
 if (zenmed.role === 'Patient') {
   setMenuItems(patientLinks);
