@@ -86,12 +86,16 @@ const setDeleteData = function(){
   deleteDateButton.style.backgroundColor = "#44ccc7";
 }
 
-const addDatesRows = function(table, dates, actions, filter, reset = true, limit=10){
+const addDatesRows = function(table, dates, actions, filter, reset = true, limit=100){
   if(!table || !dates) return;
   filter = filter || (() => true)
   if(reset) table.innerHTML = "";
 
+  let openTriggersAdd = [],
+      openTriggersDelete = [];
+
   if (dates.length) {
+    limit = dates.length < limit ? dates.length : limit;
     for (let i = 0; i < limit; i++) {
       const field = dates.shift();
       console.log(field);
@@ -116,7 +120,7 @@ const addDatesRows = function(table, dates, actions, filter, reset = true, limit
         (actions ?
               '<div class="table-row-item">' +
                 '<div class="actions">' +
-                  actions.map(a => renderAction(`dateId${i}`, a, field)).join('') +
+                  actions.map(a => renderAction(`dateId${dates.length}`, a, field)).join('') +
                 '</div>' +
               '</div>'
             :
@@ -124,11 +128,8 @@ const addDatesRows = function(table, dates, actions, filter, reset = true, limit
       '</div>';
 
       if (actions) {
-        let openTriggersAdd = []
-        let openTriggersDelete = []
-
         actions.forEach(a => {
-          let actionId = `#dateId${i}${a.icon}`
+          let actionId = `#dateId${dates.length}${a.icon}`
           let button = document.querySelector(actionId)
   
           if(a.icon == 'fa-plus'){
@@ -151,28 +152,36 @@ const addDatesRows = function(table, dates, actions, filter, reset = true, limit
   
           }
         });
-        
-        document.querySelector("#reserve-popup").style.visibility = "visible";
-        app.createPopup({
-          popupContainer: '#reserve-popup',
-          openTriggers: openTriggersAdd,
-          closeTriggers: [
-            '#reserve-popup-close',
-            '#close-take-date-button'
-          ]
-        })
-    
-        document.querySelector("#delete-reserve-popup").style.visibility = "visible";
-        app.createPopup({
-          popupContainer: '#delete-reserve-popup',
-          openTriggers: openTriggersDelete,
-          closeTriggers: [
-            '#delete-reserve-popup-close',
-            '#cancel-delete-button'
-          ]
-        })
       }
     }
+
+    if (actions) {
+      document.querySelector("#reserve-popup").style.visibility = "visible";
+      app.createPopup({
+        popupContainer: '#reserve-popup',
+        openTriggers: openTriggersAdd,
+        closeTriggers: [
+          '#reserve-popup-close',
+          '#close-take-date-button'
+        ]
+      });
+
+      document.querySelector("#delete-reserve-popup").style.visibility = "visible";
+      app.createPopup({
+        popupContainer: '#delete-reserve-popup',
+        openTriggers: openTriggersDelete,
+        closeTriggers: [
+          '#delete-reserve-popup-close',
+          '#cancel-delete-button'
+        ]
+      });
+    }
+  } else {
+    const loadMoreButton = document.querySelector('#load-more-button');
+    loadMoreButton.innerHTML = 'No hay mas turnos disponibles';
+    loadMoreButton.style.backgroundColor = '#515365';
+    loadMoreButton.style.cursor = 'auto';
+    loadMoreButton.style.width = '300px';
   }
 
   // dates.forEach((date, i) => {
