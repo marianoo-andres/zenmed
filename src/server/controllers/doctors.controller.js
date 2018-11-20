@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
   User = mongoose.model('Users'),
   Doctor = mongoose.model('Doctors'),
+  DateReserved = mongoose.model('DateReserved'),
   messageHandler = require('../handlers/message.handler');
 
 exports.list = function(req, res) {
@@ -51,7 +52,7 @@ exports.update_a_doctor = function(req, res) {
 };
 
 
-exports.delete_a_doctor = function(req, res) {  
+exports.delete_a_doctor2 = function(req, res) {  
   Doctor.findById(req.params.doctorId, function(err, doctor){
     User.deleteOne({ username : doctor.username }, function(err, user){
       Doctor.deleteOne({_id: req.params.doctorId }, function(err, doctor) {
@@ -62,4 +63,28 @@ exports.delete_a_doctor = function(req, res) {
       });
     })
   })
+};
+
+
+exports.delete_a_doctor = function(req, res) {
+  Doctor.findById(req.params.id)
+    .then(function (doctor) {
+      console.log(doctor);
+      User.deleteOne({ username: doctor.username})
+        .then(function () {
+          console.log("Delete one doctor");
+          Doctor.deleteOne({_id: req.params.id})
+            .then(function () {
+              console.log("Delete datereserved");
+              DateReserved.deleteMany({doctorId: req.params.id})
+                .then(function () {
+                  console.log("LLEGUE ACA");
+                  res.json(messageHandler.ok('doctor successfully deleted'));
+              })
+            })
+        })
+    })
+    .catch(function (error) {
+      res.send(messageHandler.error(error));  
+    })
 };
