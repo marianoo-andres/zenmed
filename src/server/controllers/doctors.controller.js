@@ -52,20 +52,6 @@ exports.update_a_doctor = function(req, res) {
 };
 
 
-exports.delete_a_doctor2 = function(req, res) {  
-  Doctor.findById(req.params.doctorId, function(err, doctor){
-    User.deleteOne({ username : doctor.username }, function(err, user){
-      Doctor.deleteOne({_id: req.params.doctorId }, function(err, doctor) {
-        if (err)
-          res.send(messageHandler.error(err));
-        else 
-          res.json(messageHandler.ok('doctor successfully deleted'));
-      });
-    })
-  })
-};
-
-
 exports.delete_a_doctor = function(req, res) {
   Doctor.findById(req.params.id)
     .then(function (doctor) {
