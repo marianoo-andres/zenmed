@@ -86,90 +86,176 @@ const setDeleteData = function(){
   deleteDateButton.style.backgroundColor = "#44ccc7";
 }
 
-const addDatesRows = function(table, dates, actions, filter){
+const addDatesRows = function(table, dates, actions, filter, reset = true, limit=10){
   if(!table || !dates) return;
   filter = filter || (() => true)
-  table.innerHTML = ""
-  dates.forEach((date, i) => {
-    if(filter(date))
+  if(reset) table.innerHTML = "";
+
+  if (dates.length) {
+    for (let i = 0; i < limit; i++) {
+      const field = dates.shift();
+      console.log(field);
+      if(filter(field))
       table.innerHTML +=
       '<div class="table-row">' +
         '<div class="table-row-item">' +
           '<img class="avatar-img small" src="img/users/default-user.png" alt="avatar-img">' +
         '</div>' +
         '<div class="table-row-item">' +
-          `<p class="table-row-item-text medic-name">${date.doctor.name}</p>` +
+          `<p class="table-row-item-text medic-name">${field.doctor.name}</p>` +
         '</div>' +
         '<div class="table-row-item">' +
-          `<p class="table-row-item-text medic-speciality">${date.doctor.speciality}</p>` +
+          `<p class="table-row-item-text medic-speciality">${field.doctor.speciality}</p>` +
         '</div>' +
         '<div class="table-row-item">' +
-          `<p class="table-row-item-text date-info">${date.date}</p>` +
+          `<p class="table-row-item-text date-info">${field.date}</p>` +
         '</div>' +
         '<div class="table-row-item">' +
-          `<p class="table-row-item-text time-info">${date.time} hs</p>` +
+          `<p class="table-row-item-text time-info">${field.time} hs</p>` +
         '</div>' +
         (actions ?
               '<div class="table-row-item">' +
                 '<div class="actions">' +
-                  actions.map(a => renderAction(`dateId${i}`, a, date)).join('') +
+                  actions.map(a => renderAction(`dateId${i}`, a, field)).join('') +
                 '</div>' +
               '</div>'
             :
             "") +
       '</div>';
-  });
 
-  if (actions) {
-    let openTriggersAdd = []
-    let openTriggersDelete = []
-    dates.forEach((date,i) => {
-      actions.forEach(a => {
-        let actionId = `#dateId${i}${a.icon}`
-        let button = document.querySelector(actionId)
+      if (actions) {
+        let openTriggersAdd = []
+        let openTriggersDelete = []
 
-        if(a.icon == 'fa-plus'){
-          openTriggersAdd.push(actionId)
-          if (button) {          
-            button.addEventListener('click', showDataAdd)
-          }
-        }else if(a.icon == 'fa-times'){
-          openTriggersDelete.push(actionId)
-          if (button) {          
-            let dateParts = button.getAttribute('data-date').split('/');
-            let hourParts = button.getAttribute('data-time').replace('hs','').split(':');
-            if(new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[0], hourParts[1]) < new Date()){
-              button.style.visibility = 'hidden'
-            }else {
-              button.addEventListener('click', setDeleteData)
+        actions.forEach(a => {
+          let actionId = `#dateId${i}${a.icon}`
+          let button = document.querySelector(actionId)
+  
+          if(a.icon == 'fa-plus'){
+            openTriggersAdd.push(actionId)
+            if (button) {          
+              button.addEventListener('click', showDataAdd)
             }
+          }else if(a.icon == 'fa-times'){
+            openTriggersDelete.push(actionId)
+            if (button) {          
+              let dateParts = button.getAttribute('data-date').split('/');
+              let hourParts = button.getAttribute('data-time').replace('hs','').split(':');
+              if(new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[0], hourParts[1]) < new Date()){
+                button.style.visibility = 'hidden'
+              }else {
+                button.addEventListener('click', setDeleteData)
+              }
+            }
+          }else if(a.icon == 'fa-marker'){
+  
           }
-        }else if(a.icon == 'fa-marker'){
-
-        }
-      });
-    })
+        });
+        
+        document.querySelector("#reserve-popup").style.visibility = "visible";
+        app.createPopup({
+          popupContainer: '#reserve-popup',
+          openTriggers: openTriggersAdd,
+          closeTriggers: [
+            '#reserve-popup-close',
+            '#close-take-date-button'
+          ]
+        })
     
-    document.querySelector("#reserve-popup").style.visibility = "visible";
-    app.createPopup({
-      popupContainer: '#reserve-popup',
-      openTriggers: openTriggersAdd,
-      closeTriggers: [
-        '#reserve-popup-close',
-        '#close-take-date-button'
-      ]
-    })
-
-    document.querySelector("#delete-reserve-popup").style.visibility = "visible";
-    app.createPopup({
-      popupContainer: '#delete-reserve-popup',
-      openTriggers: openTriggersDelete,
-      closeTriggers: [
-        '#delete-reserve-popup-close',
-        '#cancel-delete-button'
-      ]
-    })
+        document.querySelector("#delete-reserve-popup").style.visibility = "visible";
+        app.createPopup({
+          popupContainer: '#delete-reserve-popup',
+          openTriggers: openTriggersDelete,
+          closeTriggers: [
+            '#delete-reserve-popup-close',
+            '#cancel-delete-button'
+          ]
+        })
+      }
+    }
   }
+
+  // dates.forEach((date, i) => {
+  //   if(filter(date))
+  //     table.innerHTML +=
+  //     '<div class="table-row">' +
+  //       '<div class="table-row-item">' +
+  //         '<img class="avatar-img small" src="img/users/default-user.png" alt="avatar-img">' +
+  //       '</div>' +
+  //       '<div class="table-row-item">' +
+  //         `<p class="table-row-item-text medic-name">${date.doctor.name}</p>` +
+  //       '</div>' +
+  //       '<div class="table-row-item">' +
+  //         `<p class="table-row-item-text medic-speciality">${date.doctor.speciality}</p>` +
+  //       '</div>' +
+  //       '<div class="table-row-item">' +
+  //         `<p class="table-row-item-text date-info">${date.date}</p>` +
+  //       '</div>' +
+  //       '<div class="table-row-item">' +
+  //         `<p class="table-row-item-text time-info">${date.time} hs</p>` +
+  //       '</div>' +
+  //       (actions ?
+  //             '<div class="table-row-item">' +
+  //               '<div class="actions">' +
+  //                 actions.map(a => renderAction(`dateId${i}`, a, date)).join('') +
+  //               '</div>' +
+  //             '</div>'
+  //           :
+  //           "") +
+  //     '</div>';
+  // });
+
+  // if (actions) {
+  //   let openTriggersAdd = []
+  //   let openTriggersDelete = []
+
+  //   dates.forEach((date,i) => {
+  //     actions.forEach(a => {
+  //       let actionId = `#dateId${i}${a.icon}`
+  //       let button = document.querySelector(actionId)
+
+  //       if(a.icon == 'fa-plus'){
+  //         openTriggersAdd.push(actionId)
+  //         if (button) {          
+  //           button.addEventListener('click', showDataAdd)
+  //         }
+  //       }else if(a.icon == 'fa-times'){
+  //         openTriggersDelete.push(actionId)
+  //         if (button) {          
+  //           let dateParts = button.getAttribute('data-date').split('/');
+  //           let hourParts = button.getAttribute('data-time').replace('hs','').split(':');
+  //           if(new Date(dateParts[2], dateParts[1] - 1, dateParts[0], hourParts[0], hourParts[1]) < new Date()){
+  //             button.style.visibility = 'hidden'
+  //           }else {
+  //             button.addEventListener('click', setDeleteData)
+  //           }
+  //         }
+  //       }else if(a.icon == 'fa-marker'){
+
+  //       }
+  //     });
+  //   });
+    
+  //   document.querySelector("#reserve-popup").style.visibility = "visible";
+  //   app.createPopup({
+  //     popupContainer: '#reserve-popup',
+  //     openTriggers: openTriggersAdd,
+  //     closeTriggers: [
+  //       '#reserve-popup-close',
+  //       '#close-take-date-button'
+  //     ]
+  //   })
+
+  //   document.querySelector("#delete-reserve-popup").style.visibility = "visible";
+  //   app.createPopup({
+  //     popupContainer: '#delete-reserve-popup',
+  //     openTriggers: openTriggersDelete,
+  //     closeTriggers: [
+  //       '#delete-reserve-popup-close',
+  //       '#cancel-delete-button'
+  //     ]
+  //   })
+  // }
 }
 
 const addNextDatesRows = function(table, dates, filter){

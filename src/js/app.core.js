@@ -176,7 +176,18 @@ module.exports = {
       success: function (dates) {
         renderList(listadoMedicos, dates, 
           [{ containerClass: 'reserve', icon: 'fa-plus' }],
-          (date) => RegExp(`.*${especialidad.value.toUpperCase()}.*`).test(date.doctor.speciality.toUpperCase()))        
+          (date) => RegExp(`.*${especialidad.value.toUpperCase()}.*`).test(date.doctor.speciality.toUpperCase()));
+
+        const loadMoreButton = document.querySelector('#load-more-button');
+
+        loadMoreButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          renderList(listadoMedicos, dates, 
+            [{ containerClass: 'reserve', icon: 'fa-plus' }],
+            (date) => RegExp(`.*${especialidad.value.toUpperCase()}.*`).test(date.doctor.speciality.toUpperCase()),
+            false);
+        });
       },
       error: function(err){
         console.log(err);
