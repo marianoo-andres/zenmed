@@ -51,7 +51,7 @@ function XM_Popup(customConfig) {
     config.popupElement = document.querySelector(config.popupContainer);
     if (!config.popupElement) throw new Error(`Can't find ${config.popupContainer} in the DOM`);
     config.popupElement.style.position = 'absolute';
-    config.popupElement.style.top = '120px';
+    config.popupElement.style.top = `${window.scrollY + 120}px`;
     config.popupElement.style.left = '50%';
     config.popupElement.style.marginLeft = `-${config.popupElement.offsetWidth/2}px`;
     config.popupElement.style.zIndex = 10000;
@@ -70,7 +70,7 @@ function XM_Popup(customConfig) {
   const createOverlay = function () {
     config.overlayItem = document.createElement('div');
     config.overlayItem.style.width = '100%';
-    config.overlayItem.style.height = `${window.outerHeight}px`;
+    config.overlayItem.style.height = `${document.body.offsetHeight}px`;
     config.overlayItem.style.backgroundColor = 'rgba(0, 0, 0, .9)';
     config.overlayItem.style.position = 'absolute';
     config.overlayItem.style.top = 0;
@@ -87,6 +87,7 @@ function XM_Popup(customConfig) {
    * @description - Shows overlay
    */
   const showOverlay = function () {
+    config.overlayItem.style.height = `${document.body.offsetHeight}px`;
     config.overlayItem.style.visibility = 'visible';
     config.overlayItem.style.opacity = 1;
   };
@@ -131,6 +132,7 @@ function XM_Popup(customConfig) {
   me.showPopup = function () {
     document.addEventListener('keydown', hideOnEsc);
     showOverlay();
+    config.popupElement.style.top = `${window.scrollY + 120}px`;
     config.popupElement.style.visibility = 'visible';
     config.popupElement.style.opacity = 1;
     config.popupElement.style.transform = 'scale(1)';
