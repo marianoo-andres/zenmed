@@ -281,10 +281,10 @@ module.exports = {
       rowInput.type = 'text';
       rowInput.setAttribute('value', zenmed.user[config.fieldName]);
       rowInput.setAttribute('id', `zm_${config.fieldName}`);
-      if (config.fieldName === 'birthdate') {
+/*       if (config.fieldName === 'birthdate') {
         const d = new Date(zenmed.user[config.fieldName]);
         rowInput.setAttribute('value', `${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}`);
-      }
+      } */
       rowItem.append(rowLabel);
       rowItem.append(rowInput);
       row.append(rowItem);

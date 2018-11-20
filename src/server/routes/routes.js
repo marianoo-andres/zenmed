@@ -52,10 +52,6 @@ module.exports = function(app) {
 
 
   var patientsList = require('../controllers/patients.controller');
-  app.route('/patients/dates/:username').get(patientsList.list_dates)
-  app.route('/patients/dates/:username/:canceled').get(patientsList.list_dates)
-  app.route('/patients/dates/:username/:canceled/:dateTime').get(patientsList.list_dates)
-  app.route('/patients/dates/:username/:dateTime').get(patientsList.list_dates)
 
   app.route('/patient/:id')
     .get(patientsList.read_a_patient)
