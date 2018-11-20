@@ -124,7 +124,9 @@ exports.login = function(req, res) {  User.findOne( { username: req.body.usernam
       else {
          if (user.role === 'Patient') {
         Patient.findOne({ username: user.username}, function (err, patient) {
-          res.json({ isLogged: true, user: patient, role: user.role});
+          var p = JSON.parse(JSON.stringify(patient));
+          p.birthdate = moment(p.birthdate).format('DD/MM/YYYY');
+          res.json({ isLogged: true, user: p, role: user.role});
         })
       }
 
